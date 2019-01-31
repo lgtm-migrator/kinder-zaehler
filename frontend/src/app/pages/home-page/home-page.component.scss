@@ -1,0 +1,30 @@
+.no-bullet {
+  list-style-type: none;
+}
+
+.scout-list {
+  padding: 50px 0 0;
+
+  .scout {
+    border-collapse: collapse;
+    border-top: 1px solid #dadada;
+    border-bottom: 1px solid #dadada;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 20px;
+  }
+
+  .scout-name {
+    font-weight: bold;
+    margin-bottom: 2px;
+  }
+
+  .scout-id {
+    color: #2798F7;
+  }
+}
+
+.title {
+  margin: 20px;
+  color: #2798F7;
+}

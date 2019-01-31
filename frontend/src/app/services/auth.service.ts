@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {AngularFireAuth} from "@angular/fire/auth";
+import {Router} from "@angular/router";
 import * as firebase from 'firebase/app'
 import 'firebase/auth'
-import {Router} from "@angular/router";
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +16,10 @@ export class AuthService {
 
   get user$() {
     return this.angularFireAuth.authState;
+  }
+
+  get userId() {
+    return this.angularFireAuth.auth.currentUser.uid;
   }
 
   public signInWithGoogle() {

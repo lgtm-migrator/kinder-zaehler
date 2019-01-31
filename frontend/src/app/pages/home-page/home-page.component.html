@@ -1,3 +1,12 @@
-<p>
-  home-page works!
-</p>
+<h1 class="title">Scouts</h1>
+
+<ul class="no-bullet scout-list">
+  <ng-container class="scout" *ngFor="let scoutId of scoutIds$ | async">
+    <ng-container *ngIf="getScout$(scoutId) | async as scout">
+      <li>
+        <p class="scout-name">{{scout.name}}</p>
+        <span class="scout-id">{{scout.scoutId}}</span>
+      </li>
+    </ng-container>
+  </ng-container>
+</ul>
