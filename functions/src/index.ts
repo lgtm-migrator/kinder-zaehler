@@ -1,7 +1,7 @@
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
 
-admin.initializeApp();
+admin.initializeApp(functions.config().firebase);
 
 const firestore = admin.firestore();
 
@@ -77,6 +77,16 @@ export const joinScout = functions.https.onCall(async (data, context) => {
   userData.scouts.push(scoutId);
   await userRef.set(userData);
   return;
+});
+
+
+functions.auth.user().onCreate(async (event) => {
+
+  const userRef = await firestore.collection('users').doc(event.uid);
+  
+  await userRef.set({
+    scouts: []
+  });
 });
 
 export const ping = functions.https.onRequest((request, response) => {
