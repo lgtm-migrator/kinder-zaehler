@@ -5,8 +5,16 @@
     <ng-container *ngIf="getScout$(scoutId) | async as scout">
       <li>
         <p class="scout-name">{{scout.name}}</p>
-        <span class="scout-id">{{scout.scoutId}}</span>
+        <span>scout-id: <span class="scout-id">{{scout.scoutId}}</span></span>
       </li>
     </ng-container>
   </ng-container>
 </ul>
+
+<div class="actions">
+  <form class="add-scout-form">
+    <input class="input is-rounded scout-id-input" type="text" placeholder="scout id">
+    <button class="button is-primary is-rounded is-fullwidth">add</button>
+  </form>
+  <button class="button is-link is-rounded is-fullwidth">create new</button>
+</div>

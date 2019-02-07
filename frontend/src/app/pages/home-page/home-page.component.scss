@@ -1,9 +1,14 @@
+.title {
+  margin: 20px;
+  color: #2798F7;
+}
+
 .no-bullet {
   list-style-type: none;
 }
 
 .scout-list {
-  padding: 50px 0 0;
+  padding: 50px 20px 0;
 
   .scout {
     border-collapse: collapse;
@@ -24,7 +29,16 @@
   }
 }
 
-.title {
-  margin: 20px;
-  color: #2798F7;
+.actions {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  left: 20px;
+
+  .add-scout-form {
+    margin-bottom: 10px;
+    .scout-id-input {
+      margin-bottom: 10px;
+    }
+  }
 }
