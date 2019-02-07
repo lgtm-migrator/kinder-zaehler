@@ -39,4 +39,11 @@ export class ScoutService {
       name
     });
   }
+
+  joinScout(scoutId: string) {
+    const joinScoutFunction = this.angularFireFunctions.httpsCallable('joinScout');
+    joinScoutFunction({
+      scoutId
+    });
+  }
 }

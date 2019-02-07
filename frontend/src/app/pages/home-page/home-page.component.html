@@ -15,8 +15,13 @@
   <div class="box">
 
     <div class="join-scout-form">
-      <input class="input is-rounded padding" type="text" placeholder="scout id">
-      <button class="button is-primary is-rounded is-fullwidth">join</button>
+      <input
+        [(ngModel)]="joinScoutId"
+        class="input is-rounded padding" type="text" placeholder="scout id">
+      <button
+        (click)="joinScout()"
+        class="button is-primary is-rounded is-fullwidth"
+      >join</button>
     </div>
   </div>
   <div class="box">

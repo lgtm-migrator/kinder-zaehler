@@ -4,6 +4,9 @@
     "indexes": "firestore.indexes.json"
   },
   "hosting": {
+    "predeploy": [
+      "npm --prefix ./frontend run build"
+    ],
     "public": "public",
     "ignore": [
       "firebase.json",

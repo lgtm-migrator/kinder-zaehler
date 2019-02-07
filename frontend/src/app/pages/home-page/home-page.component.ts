@@ -12,6 +12,7 @@ export class HomePageComponent {
   public scoutIds$: Observable<string[]>;
   public newScoutName: string = '';
   public newScoutError = false;
+  public joinScoutId: string = '';
   private scoutObservables: { [scoutId: string]: Observable<{ scoutId: string, name: string }> } = {};
 
   constructor(public scoutService: ScoutService) {
@@ -25,6 +26,11 @@ export class HomePageComponent {
       this.scoutObservables[scoutId] = this.scoutService.getScout$(scoutId);
     }
     return this.scoutObservables[scoutId];
+  }
+
+  joinScout() {
+    this.scoutService.joinScout(this.joinScoutId);
+    this.joinScoutId = '';
   }
 
   createScout() {
