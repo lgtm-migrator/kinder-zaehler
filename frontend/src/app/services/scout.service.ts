@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from "@angular/fire/firestore";
+import {AngularFireFunctions} from "@angular/fire/functions";
 import {Observable} from "rxjs";
 import {map, tap} from "rxjs/operators";
 import {AuthService} from "./auth.service";
@@ -10,7 +11,10 @@ import {AuthService} from "./auth.service";
 export class ScoutService {
   public scoutIds$: Observable<string[]>;
 
-  constructor(private angularFirestore: AngularFirestore, private auth: AuthService) {
+  constructor(
+    private angularFirestore: AngularFirestore,
+    private angularFireFunctions: AngularFireFunctions,
+    private auth: AuthService) {
     this.scoutIds$ = this.angularFirestore
       .collection(`users`)
       .doc<{ scouts: string[] }>(this.auth.userId)
@@ -27,5 +31,12 @@ export class ScoutService {
       }),
       tap(val => console.log('received scouts: ', val))
     )
+  }
+
+  createScout(name: string) {
+    const createScoutFunction = this.angularFireFunctions.httpsCallable('createScout');
+    createScoutFunction({
+      name
+    });
   }
 }

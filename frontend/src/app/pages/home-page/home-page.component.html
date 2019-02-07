@@ -12,9 +12,25 @@
 </ul>
 
 <div class="actions">
-  <form class="add-scout-form">
-    <input class="input is-rounded scout-id-input" type="text" placeholder="scout id">
-    <button class="button is-primary is-rounded is-fullwidth">add</button>
-  </form>
-  <button class="button is-link is-rounded is-fullwidth">create new</button>
+  <div class="box">
+
+    <div class="join-scout-form">
+      <input class="input is-rounded padding" type="text" placeholder="scout id">
+      <button class="button is-primary is-rounded is-fullwidth">join</button>
+    </div>
+  </div>
+  <div class="box">
+    <div class="create-scout-form">
+      <div class="field">
+        <div class="control has-icons-left has-icons-right">
+          <input class="input is-rounded padding" type="text" placeholder="scout name" [(ngModel)]="newScoutName">
+        </div>
+        <p
+          *ngIf="newScoutError"
+          class="help is-danger"
+        >The scout name needs to be at least 3 characters</p>
+      </div>
+      <button class="button is-link is-rounded is-fullwidth" (click)="createScout()">create new</button>
+    </div>
+  </div>
 </div>

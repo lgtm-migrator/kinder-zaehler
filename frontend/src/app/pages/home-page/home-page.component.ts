@@ -10,6 +10,8 @@ import {ScoutService} from "../../services/scout.service";
 })
 export class HomePageComponent {
   public scoutIds$: Observable<string[]>;
+  public newScoutName: string = '';
+  public newScoutError = false;
   private scoutObservables: { [scoutId: string]: Observable<{ scoutId: string, name: string }> } = {};
 
   constructor(public scoutService: ScoutService) {
@@ -23,5 +25,15 @@ export class HomePageComponent {
       this.scoutObservables[scoutId] = this.scoutService.getScout$(scoutId);
     }
     return this.scoutObservables[scoutId];
+  }
+
+  createScout() {
+    if (this.newScoutName.trim().length < 3) {
+      this.newScoutError = true;
+      return;
+    }
+    this.scoutService.createScout(this.newScoutName);
+    this.newScoutError = false;
+    this.newScoutName = "";
   }
 }

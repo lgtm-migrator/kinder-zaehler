@@ -2,6 +2,8 @@ import {NgModule} from '@angular/core';
 import {AngularFireModule} from "@angular/fire";
 import {AngularFireAuthModule} from "@angular/fire/auth";
 import {AngularFirestoreModule} from "@angular/fire/firestore";
+import {AngularFireFunctionsModule} from "@angular/fire/functions";
+import {FormsModule} from "@angular/forms";
 import {BrowserModule} from '@angular/platform-browser';
 import {environment} from "../environments/environment";
 
@@ -20,10 +22,12 @@ import {LoginPageComponent} from './pages/login-page/login-page.component';
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFirestoreModule
+    AngularFirestoreModule,
+    AngularFireFunctionsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
