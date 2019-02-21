@@ -1,3 +1,36 @@
-<section content="login">
-  <app-google-sign-in-button (click)="onGoogleSingInClick()"></app-google-sign-in-button>
-</section>
+<div class="columns is-centered is-fullheight">
+  <section content="login" class="login column is-4-desktop is-6-tablet is-full-mobile">
+    <h2 class="title is-2 has-text-centered">Kinder Zähler</h2>
+
+    <app-google-sign-in-button class="google-sign-in" (click)="onGoogleSingInClick()"></app-google-sign-in-button>
+
+
+    <div class="box">
+      <div class="login-form">
+        <div class="field">
+          <div class="control">
+            <input
+              class="input is-rounded padding" type="text" placeholder="E-Mail">
+          </div>
+        </div>
+        <div class="field">
+          <div class="control">
+            <input
+              class="input is-rounded padding" type="text" placeholder="Password">
+          </div>
+        </div>
+        <div class="buttons">
+          <button
+            class="button is-primary is-rounded is-fullwidth"
+          >login
+          </button>
+          <button
+            class="button is-link is-rounded is-fullwidth"
+          >Go to Register
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div>

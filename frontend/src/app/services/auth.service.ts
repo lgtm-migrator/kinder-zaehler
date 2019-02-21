@@ -27,6 +27,11 @@ export class AuthService {
     return this.oAuthLogin(provider);
   }
 
+  public signInWithEmailAndPassword() {
+    const provider = new firebase.auth.GoogleAuthProvider();
+    return this.oAuthLogin(provider);
+  }
+
   public signOut() {
     this.angularFireAuth.auth.signOut().then(() => {
       this.router.navigate(['/login']);

@@ -81,9 +81,8 @@ export const joinScout = functions.https.onCall(async (data, context) => {
 
 
 functions.auth.user().onCreate(async (event) => {
-
   const userRef = await firestore.collection('users').doc(event.uid);
-  
+
   await userRef.set({
     scouts: []
   });
