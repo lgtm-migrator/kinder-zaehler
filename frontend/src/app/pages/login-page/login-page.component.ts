@@ -11,6 +11,9 @@ import {AuthService} from "../../services/auth.service";
 })
 export class LoginPageComponent implements OnDestroy {
   private authState$$: Subscription;
+  private email = "";
+  private password = "";
+  private passwordRepeat = "";
 
   constructor(private auth: AuthService, private router: Router) {
     this.authState$$ = this.auth.user$.subscribe((user) => {
@@ -23,6 +26,14 @@ export class LoginPageComponent implements OnDestroy {
 
   async onGoogleSingInClick() {
     await this.auth.signInWithGoogle()
+  }
+
+  async login() {
+    await this.auth.signInWithEmailAndPassword(this.email, this.password);
+  }
+
+  async register() {
+    await this.auth.signUpWithEmailAndPassword(this.email, this.password);
   }
 
   ngOnDestroy(): void {

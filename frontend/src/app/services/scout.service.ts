@@ -19,7 +19,7 @@ export class ScoutService {
       .collection(`users`)
       .doc<{ scouts: string[] }>(this.auth.userId)
       .valueChanges().pipe(
-        map((value => value.scouts)),
+        map((value => (value) ? value.scouts : [])),
         tap(val => console.log('received scoutIds: ', val))
       );
   }
