@@ -17,11 +17,9 @@ export class HomePageComponent {
 
   constructor(public scoutService: ScoutService) {
     this.scoutIds$ = scoutService.scoutIds$;
-    // this.scouts$ = of([{name: "name1", scoutId: "378"}, {name: "name2", scoutId: "379"}])
   }
 
   getScout$(scoutId: string): Observable<{ scoutId: string, name: string }> {
-    console.log("from HomePageComponent, get scoutId: ", scoutId);
     if (this.scoutObservables[scoutId] === undefined) {
       this.scoutObservables[scoutId] = this.scoutService.getScout$(scoutId);
     }

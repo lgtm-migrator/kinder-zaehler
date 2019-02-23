@@ -1,14 +1,9 @@
-.login {
+.auth {
   padding: 20px;
-  margin-top: 200px;
-  
+  transform: translateY(calc(50% - 100px));
 }
 
 .google-sign-in {
   padding-left: 10px;
   padding-right: 10px;
-}
-
-.login-form {
-  padding-top: 30px;
 }

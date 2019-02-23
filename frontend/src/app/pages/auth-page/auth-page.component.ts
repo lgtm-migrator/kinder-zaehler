@@ -1,19 +1,15 @@
-import {ChangeDetectionStrategy, Component, OnDestroy} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {AuthService} from "../../services/auth.service";
 
 @Component({
-  selector: 'app-login-page',
-  templateUrl: './login-page.component.html',
-  styleUrls: ['./login-page.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  selector: 'app-auth-page',
+  templateUrl: './auth-page.component.html',
+  styleUrls: ['./auth-page.component.scss']
 })
-export class LoginPageComponent implements OnDestroy {
+export class AuthPageComponent implements OnDestroy {
   private authState$$: Subscription;
-  private email = "";
-  private password = "";
-  private passwordRepeat = "";
 
   constructor(private auth: AuthService, private router: Router) {
     this.authState$$ = this.auth.user$.subscribe((user) => {
@@ -26,14 +22,6 @@ export class LoginPageComponent implements OnDestroy {
 
   async onGoogleSingInClick() {
     await this.auth.signInWithGoogle()
-  }
-
-  async login() {
-    await this.auth.signInWithEmailAndPassword(this.email, this.password);
-  }
-
-  async register() {
-    await this.auth.signUpWithEmailAndPassword(this.email, this.password);
   }
 
   ngOnDestroy(): void {

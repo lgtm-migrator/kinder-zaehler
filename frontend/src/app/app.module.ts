@@ -10,15 +10,19 @@ import {environment} from "../environments/environment";
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {GoogleSignInButtonComponent} from './components/google-sign-in-button/google-sign-in-button.component';
+import {LoginFormComponent} from './components/login-form/login-form.component';
+import {RegisterFormComponent} from './components/register-form/register-form.component';
+import {AuthPageComponent} from './pages/auth-page/auth-page.component';
 import {HomePageComponent} from './pages/home-page/home-page.component';
-import {LoginPageComponent} from './pages/login-page/login-page.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    LoginPageComponent,
     GoogleSignInButtonComponent,
-    HomePageComponent
+    HomePageComponent,
+    AuthPageComponent,
+    RegisterFormComponent,
+    LoginFormComponent,
   ],
   imports: [
     BrowserModule,

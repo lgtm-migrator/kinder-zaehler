@@ -1,0 +1,36 @@
+<form (submit)="login()">
+  <div class="field">
+    <div class="control">
+      <input
+        [(ngModel)]="model.email"
+        class="input is-rounded padding"
+        type="email"
+        placeholder="E-Mail"
+        name="email"
+      >
+    </div>
+  </div>
+  <div class="field">
+    <div class="control">
+      <input
+        [(ngModel)]="model.password"
+        class="input is-rounded padding"
+        type="password"
+        placeholder="Password"
+        name="password"
+      >
+    </div>
+  </div>
+  <div class="buttons">
+    <button
+      class="button is-primary is-rounded is-fullwidth"
+      type="submit"
+    >login
+    </button>
+    <a
+      class="button is-link is-rounded is-fullwidth"
+      routerLink="/register"
+    >Go to Register
+    </a>
+  </div>
+</form>
