@@ -13,6 +13,15 @@
       "**/.*",
       "**/node_modules/**"
     ],
+    "headers": [
+      {
+        "source": "/",
+        "headers": [{
+          "key": "Link",
+          "value": "</main.js>;rel=preload;as=script,</runtime.js>;rel=preload;as=script,</polyfills.js>;rel=preload;as=script,</styles.css>;rel=preload;as=style"
+        }]
+      }
+    ],
     "rewrites": [
       {
         "source": "**",
