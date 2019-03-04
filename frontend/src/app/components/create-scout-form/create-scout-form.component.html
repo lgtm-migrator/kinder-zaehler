@@ -1,0 +1,15 @@
+<form (ngSubmit)="onSubmit()">
+  <div class="field">
+    <div class="control">
+      <input
+        [(ngModel)]="scoutName"
+        name="scoutName"
+        class="input is-rounded padding" type="text" placeholder="scout name">
+    </div>
+    <p
+      *ngIf="scoutNameToShort"
+      class="help is-danger"
+    >The scout name needs to be at least 3 characters</p>
+  </div>
+  <button class="button is-link is-rounded is-fullwidth" type="submit">create new</button>
+</form>

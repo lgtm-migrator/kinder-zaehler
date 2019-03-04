@@ -10,9 +10,6 @@ import {ScoutService} from "../../services/scout.service";
 })
 export class HomePageComponent {
   public scoutIds$: Observable<string[]>;
-  public newScoutName: string = '';
-  public newScoutError = false;
-  public joinScoutId: string = '';
   private scoutObservables: { [scoutId: string]: Observable<{ scoutId: string, name: string }> } = {};
 
   constructor(public scoutService: ScoutService) {
@@ -26,18 +23,11 @@ export class HomePageComponent {
     return this.scoutObservables[scoutId];
   }
 
-  joinScout() {
-    this.scoutService.joinScout(this.joinScoutId);
-    this.joinScoutId = '';
+  joinScout(scoutId: string) {
+    this.scoutService.joinScout(scoutId);
   }
 
-  createScout() {
-    if (this.newScoutName.trim().length < 3) {
-      this.newScoutError = true;
-      return;
-    }
-    this.scoutService.createScout(this.newScoutName);
-    this.newScoutError = false;
-    this.newScoutName = "";
+  createScout(scoutName: string) {
+    this.scoutService.createScout(scoutName);
   }
 }

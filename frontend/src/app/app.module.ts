@@ -10,10 +10,12 @@ import {environment} from "../environments/environment";
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {GoogleSignInButtonComponent} from './components/google-sign-in-button/google-sign-in-button.component';
+import {JoinScoutFormComponent} from './components/join-scout-form/join-scout-form.component';
 import {LoginFormComponent} from './components/login-form/login-form.component';
 import {RegisterFormComponent} from './components/register-form/register-form.component';
 import {AuthPageComponent} from './pages/auth-page/auth-page.component';
 import {HomePageComponent} from './pages/home-page/home-page.component';
+import { CreateScoutFormComponent } from './components/create-scout-form/create-scout-form.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import {HomePageComponent} from './pages/home-page/home-page.component';
     AuthPageComponent,
     RegisterFormComponent,
     LoginFormComponent,
+    JoinScoutFormComponent,
+    CreateScoutFormComponent,
   ],
   imports: [
     BrowserModule,

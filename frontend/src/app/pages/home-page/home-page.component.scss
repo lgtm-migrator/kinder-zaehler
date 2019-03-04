@@ -1,6 +1,16 @@
-.title {
+.columns {
   margin: 20px;
-  color: #2798F7;
+  height: calc(var(--vh, 1vh) * 100 - 40px);
+  flex-direction: column;
+  display: flex;
+}
+
+.scout-list {
+  flex-grow: 10;
+  align-self: flex-start;
+  overflow-y: auto;
+  width: 100%;
+  overflow-x: hidden;
 }
 
 .no-bullet {
@@ -10,15 +20,6 @@
 .scout-list {
   padding: 50px 20px 0;
 
-  .scout {
-    border-collapse: collapse;
-    border-top: 1px solid #dadada;
-    border-bottom: 1px solid #dadada;
-    padding-left: 20px;
-    padding-right: 20px;
-    padding-bottom: 20px;
-  }
-
   .scout-name {
     font-weight: bold;
     margin-bottom: 2px;
@@ -26,16 +27,5 @@
 
   .scout-id {
     color: #2798F7;
-  }
-}
-
-.actions {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  left: 20px;
-
-  .padding {
-    margin-bottom: 10px;
   }
 }

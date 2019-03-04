@@ -1,0 +1,15 @@
+<form (ngSubmit)="onSubmit()">
+  <div class="field">
+    <div class="control">
+      <input
+        [(ngModel)]="scoutId"
+        name="scoutId"
+        class="input is-rounded padding" type="text" placeholder="scout id">
+    </div>
+  </div>
+  <button
+    type="submit"
+    class="button is-primary is-rounded is-fullwidth"
+  >join
+  </button>
+</form>
