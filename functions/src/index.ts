@@ -71,7 +71,12 @@ export const joinScout = functions.https.onCall(async (data, context) => {
   const userData = userSnapshot.data();
 
   if (userData === undefined) {
+    console.error("user has not initialized user space");
     return;
+  }
+
+  if (userData.scouts.includes(scoutId)) {
+    return; // user already has scoutId
   }
 
   userData.scouts.push(scoutId);
@@ -89,5 +94,5 @@ export const createInitialUserData = functions.auth.user().onCreate(async (event
 });
 
 export const ping = functions.https.onRequest((request, response) => {
-  response.send("pong")
+  response.send('pong');
 });
