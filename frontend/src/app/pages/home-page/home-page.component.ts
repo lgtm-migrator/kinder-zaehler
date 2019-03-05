@@ -9,18 +9,10 @@ import {ScoutService} from "../../services/scout.service";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomePageComponent {
-  public scoutIds$: Observable<string[]>;
-  private scoutObservables: { [scoutId: string]: Observable<{ scoutId: string, name: string }> } = {};
+  private scoutsObservables$: Observable<Observable<{ scoutId: string, name: string }>[]>;
 
   constructor(public scoutService: ScoutService) {
-    this.scoutIds$ = scoutService.scoutIds$;
-  }
-
-  getScout$(scoutId: string): Observable<{ scoutId: string, name: string }> {
-    if (this.scoutObservables[scoutId] === undefined) {
-      this.scoutObservables[scoutId] = this.scoutService.getScout$(scoutId);
-    }
-    return this.scoutObservables[scoutId];
+    this.scoutsObservables$ = this.scoutService.scoutsObservables$;
   }
 
   joinScout(scoutId: string) {

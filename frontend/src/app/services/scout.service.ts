@@ -10,6 +10,8 @@ import {AuthService} from "./auth.service";
 })
 export class ScoutService {
   public scoutIds$: Observable<string[]>;
+  public scoutsObservables$: Observable<Observable<{ scoutId: string, name: string }>[]>;
+
 
   constructor(
     private angularFirestore: AngularFirestore,
@@ -22,6 +24,12 @@ export class ScoutService {
         map((value => (value) ? value.scouts : [])),
         tap(val => console.log('received scoutIds: ', val))
       );
+
+    this.scoutsObservables$ = this.scoutIds$.pipe(
+      map((scoutIds) => {
+        return scoutIds.map(scoutId => this.getScout$(scoutId));
+      }),
+    );
   }
 
   getScout$(scoutId: string): Observable<{ name: string, scoutId: string }> {

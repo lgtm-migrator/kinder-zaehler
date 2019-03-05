@@ -1,0 +1,10 @@
+<ul class="scout-list">
+  <ng-container class="scout" *ngFor="let scout$ of scoutsObservables$ | async">
+    <ng-container *ngIf="scout$ | async as scout">
+      <li>
+        <p class="scout-name">{{scout.name}}</p>
+        <span>scout-id: <span class="scout-id">{{scout.scoutId}}</span></span>
+      </li>
+    </ng-container>
+  </ng-container>
+</ul>

@@ -1,9 +1,10 @@
-import {Component, EventEmitter, Output} from '@angular/core';
+import {ChangeDetectionStrategy, Component, EventEmitter, Output} from '@angular/core';
 
 @Component({
   selector: 'app-create-scout-form',
   templateUrl: './create-scout-form.component.html',
-  styleUrls: ['./create-scout-form.component.scss']
+  styleUrls: ['./create-scout-form.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CreateScoutFormComponent {
   @Output() createScout = new EventEmitter<string>();

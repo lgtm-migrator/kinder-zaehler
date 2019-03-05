@@ -16,6 +16,7 @@ import {RegisterFormComponent} from './components/register-form/register-form.co
 import {AuthPageComponent} from './pages/auth-page/auth-page.component';
 import {HomePageComponent} from './pages/home-page/home-page.component';
 import { CreateScoutFormComponent } from './components/create-scout-form/create-scout-form.component';
+import { ScoutListComponent } from './components/scout-list/scout-list.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { CreateScoutFormComponent } from './components/create-scout-form/create-
     LoginFormComponent,
     JoinScoutFormComponent,
     CreateScoutFormComponent,
+    ScoutListComponent,
   ],
   imports: [
     BrowserModule,

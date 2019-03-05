@@ -1,4 +1,4 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {AuthService} from "../../services/auth.service";
@@ -6,7 +6,8 @@ import {AuthService} from "../../services/auth.service";
 @Component({
   selector: 'app-auth-page',
   templateUrl: './auth-page.component.html',
-  styleUrls: ['./auth-page.component.scss']
+  styleUrls: ['./auth-page.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AuthPageComponent implements OnDestroy {
   private authState$$: Subscription;

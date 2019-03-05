@@ -6,26 +6,9 @@
 }
 
 .scout-list {
+  width: 100%;
   flex-grow: 10;
   align-self: flex-start;
   overflow-y: auto;
-  width: 100%;
   overflow-x: hidden;
-}
-
-.no-bullet {
-  list-style-type: none;
-}
-
-.scout-list {
-  padding: 50px 20px 0;
-
-  .scout-name {
-    font-weight: bold;
-    margin-bottom: 2px;
-  }
-
-  .scout-id {
-    color: #2798F7;
-  }
 }

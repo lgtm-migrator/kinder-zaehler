@@ -3,16 +3,9 @@
     <h1 class="title has-text-primary">Scouts</h1>
   </div>
 
-  <ul class="column scout-list no-bullet">
-    <ng-container class="scout" *ngFor="let scoutId of scoutIds$ | async">
-      <ng-container *ngIf="getScout$(scoutId) | async as scout">
-        <li>
-          <p class="scout-name">{{scout.name}}</p>
-          <span>scout-id: <span class="scout-id">{{scout.scoutId}}</span></span>
-        </li>
-      </ng-container>
-    </ng-container>
-  </ul>
+  <div class="column scout-list">
+    <app-scout-list [scoutsObservables$]="scoutsObservables$"></app-scout-list>
+  </div>
 
   <div class="column">
     <app-join-scout-form class="box" (joinScout)="joinScout($event)"></app-join-scout-form>
