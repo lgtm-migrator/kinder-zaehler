@@ -11,7 +11,8 @@ import {AuthService} from "./auth.service";
 export class ScoutService {
   public scoutIds$: Observable<string[]>;
   public scoutsObservables$: Observable<Observable<{ scoutId: string, name: string }>[]>;
-  
+
+  private scouts$: { [scoutId: string]: Observable<{ scoutId: string, name: string }> } = {};
   private _joinScout = this.angularFireFunctions.httpsCallable('joinScout');
   private _createScout = this.angularFireFunctions.httpsCallable('createScout');
 
@@ -19,9 +20,7 @@ export class ScoutService {
     private angularFirestore: AngularFirestore,
     private angularFireFunctions: AngularFireFunctions,
     private auth: AuthService) {
-    this.scoutIds$ = this.angularFirestore
-      .collection(`users`)
-      .doc<{ scouts: string[] }>(this.auth.userId)
+    this.scoutIds$ = this.getUserDoc()
       .valueChanges().pipe(
         map((value => (value) ? value.scouts : [])),
         tap(val => console.log('received scoutIds: ', val))
@@ -29,13 +28,35 @@ export class ScoutService {
 
     this.scoutsObservables$ = this.scoutIds$.pipe(
       map((scoutIds) => {
-        return scoutIds.map(scoutId => this.getScout$(scoutId));
+        return scoutIds.map(scoutId => {
+          const newScouts$ = {};
+          if (!this.scouts$[scoutId]) {
+            newScouts$[scoutId] = this.getScout$(scoutId);
+          } else {
+            newScouts$[scoutId] = this.scouts$[scoutId];
+          }
+          this.scouts$ = newScouts$;
+          return newScouts$[scoutId];
+        });
       }),
     );
+
   }
 
-  getScout$(scoutId: string): Observable<{ name: string, scoutId: string }> {
-    return this.angularFirestore.collection('scouts').doc<{ name: string }>(scoutId).valueChanges().pipe(
+  public createScout(name: string) {
+    this._createScout({
+      name
+    });
+  }
+
+  public joinScout(scoutId: string) {
+    this._joinScout({
+      scoutId
+    });
+  }
+
+  private getScout$(scoutId: string): Observable<{ name: string, scoutId: string }> {
+    return this.getScoutDoc(scoutId).valueChanges().pipe(
       map((value) => {
         return {scoutId, name: value.name}
       }),
@@ -43,15 +64,13 @@ export class ScoutService {
     )
   }
 
-  createScout(name: string) {
-    this._createScout({
-      name
-    });
+  private getScoutDoc(scoutId: string) {
+    return this.angularFirestore.collection('scouts').doc<{ name: string }>(scoutId);
   }
 
-  joinScout(scoutId: string) {
-    this._joinScout({
-      scoutId
-    });
+  private getUserDoc() {
+    return this.angularFirestore
+      .collection(`users`)
+      .doc<{ scouts: string[] }>(this.auth.userId)
   }
 }
