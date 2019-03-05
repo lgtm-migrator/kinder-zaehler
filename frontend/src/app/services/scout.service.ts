@@ -13,6 +13,7 @@ export class ScoutService {
   public scoutsObservables$: Observable<Observable<{ scoutId: string, name: string }>[]>;
 
   private scouts$: { [scoutId: string]: Observable<{ scoutId: string, name: string }> } = {};
+  private loadingScoutNames: Set<string> = new Set();
   private _joinScout = this.angularFireFunctions.httpsCallable('joinScout');
   private _createScout = this.angularFireFunctions.httpsCallable('createScout');
 
@@ -27,18 +28,7 @@ export class ScoutService {
       );
 
     this.scoutsObservables$ = this.scoutIds$.pipe(
-      map((scoutIds) => {
-        return scoutIds.map(scoutId => {
-          const newScouts$ = {};
-          if (this.scouts$[scoutId] === undefined) {
-            newScouts$[scoutId] = this.getScout$(scoutId);
-          } else {
-            newScouts$[scoutId] = this.scouts$[scoutId];
-          }
-          this.scouts$ = newScouts$;
-          return newScouts$[scoutId];
-        });
-      }),
+      map((scoutIds) => this.mapScoutIdsToScouts$(scoutIds)),
     );
 
   }
@@ -52,6 +42,19 @@ export class ScoutService {
   public joinScout(scoutId: string) {
     this._joinScout({
       scoutId
+    });
+  }
+  
+  private mapScoutIdsToScouts$(scoutIds: string[]): Observable<{ scoutId: string, name: string }>[] {
+    return scoutIds.map(scoutId => {
+      const newScouts$ = {};
+      if (this.scouts$[scoutId] === undefined) {
+        newScouts$[scoutId] = this.getScout$(scoutId);
+      } else {
+        newScouts$[scoutId] = this.scouts$[scoutId];
+      }
+      this.scouts$ = newScouts$;
+      return newScouts$[scoutId];
     });
   }
 
