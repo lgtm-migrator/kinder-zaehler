@@ -15,11 +15,11 @@ export class HomePageComponent {
     this.scoutsObservables$ = this.scoutService.scoutsObservables$;
   }
 
-  joinScout(scoutId: string) {
+  public joinScout(scoutId: string) {
     this.scoutService.joinScout(scoutId);
   }
 
-  createScout(scoutName: string) {
+  public createScout(scoutName: string) {
     this.scoutService.createScout(scoutName);
   }
 }

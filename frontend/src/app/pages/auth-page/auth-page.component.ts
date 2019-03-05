@@ -1,4 +1,4 @@
-import {ChangeDetectionStrategy, Component, OnDestroy, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component, OnDestroy} from '@angular/core';
 import {Router} from "@angular/router";
 import {Subscription} from "rxjs";
 import {AuthService} from "../../services/auth.service";
@@ -21,11 +21,11 @@ export class AuthPageComponent implements OnDestroy {
     })
   }
 
-  async onGoogleSingInClick() {
+  public async onGoogleSingInClick() {
     await this.auth.signInWithGoogle()
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.authState$$.unsubscribe();
   }
 }

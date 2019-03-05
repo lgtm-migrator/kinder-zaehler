@@ -30,7 +30,7 @@ export class ScoutService {
       map((scoutIds) => {
         return scoutIds.map(scoutId => {
           const newScouts$ = {};
-          if (!this.scouts$[scoutId]) {
+          if (this.scouts$[scoutId] === undefined) {
             newScouts$[scoutId] = this.getScout$(scoutId);
           } else {
             newScouts$[scoutId] = this.scouts$[scoutId];
@@ -65,7 +65,9 @@ export class ScoutService {
   }
 
   private getScoutDoc(scoutId: string) {
-    return this.angularFirestore.collection('scouts').doc<{ name: string }>(scoutId);
+    return this.angularFirestore
+      .collection('scouts')
+      .doc<{ name: string }>(scoutId);
   }
 
   private getUserDoc() {

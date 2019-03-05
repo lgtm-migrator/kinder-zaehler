@@ -7,10 +7,10 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Output} from '@angular
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class JoinScoutFormComponent {
-  @Output() joinScout = new EventEmitter<string>();
+  @Output() public joinScout = new EventEmitter<string>();
   public scoutId: string = '';
 
-  onSubmit() {
+  public onSubmit() {
     this.joinScout.emit(this.scoutId);
     this.scoutId = '';
   }

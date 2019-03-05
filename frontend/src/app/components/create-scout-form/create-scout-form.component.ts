@@ -7,12 +7,12 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Output} from '@angular
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CreateScoutFormComponent {
-  @Output() createScout = new EventEmitter<string>();
+  @Output() public createScout = new EventEmitter<string>();
   public scoutName: string = '';
   public scoutNameToShort = false;
 
 
-  onSubmit() {
+  public onSubmit() {
     if (this.scoutName.trim().length < 3) {
       this.scoutNameToShort = true;
       return;

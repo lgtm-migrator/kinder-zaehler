@@ -18,7 +18,7 @@ export class RegisterFormComponent {
   constructor(private auth: AuthService) {
   }
 
-  async register() {
+  public async register() {
     this.passwordDoNotMatch = this.model.password !== this.model.passwordRepeat;
     if (this.passwordDoNotMatch) {
       return;

@@ -8,5 +8,5 @@ import {Observable} from "rxjs";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ScoutListComponent {
-  @Input() scoutsObservables$: Observable<Observable<{ scoutId: string, name: string }>[]>;
+  @Input() public scoutsObservables$: Observable<Observable<{ scoutId: string, name: string }>[]>;
 }

@@ -13,7 +13,7 @@ export class LoginFormComponent {
   constructor(private auth: AuthService) {
   }
 
-  async login() {
+  public async login() {
     await this.auth.signInWithEmailAndPassword(this.model.email, this.model.password);
   }
 }
