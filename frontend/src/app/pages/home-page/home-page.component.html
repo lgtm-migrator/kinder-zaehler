@@ -4,7 +4,10 @@
   </div>
 
   <div class="column scout-list">
-    <app-scout-list [scoutsObservables$]="scoutsObservables$"></app-scout-list>
+    <app-scout-list
+      [scoutsObservables$]="scoutsObservables$"
+      [loadingScoutNames$]="loadingScoutNames$"
+    ></app-scout-list>
   </div>
 
   <div class="column">

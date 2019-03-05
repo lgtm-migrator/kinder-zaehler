@@ -9,4 +9,5 @@ import {Observable} from "rxjs";
 })
 export class ScoutListComponent {
   @Input() public scoutsObservables$: Observable<Observable<{ scoutId: string, name: string }>[]>;
+  @Input() public loadingScoutNames$: Observable<string[]>;
 }

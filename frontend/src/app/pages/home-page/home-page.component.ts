@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {Observable} from "rxjs";
+import {Observable, Subject} from "rxjs";
 import {ScoutService} from "../../services/scout.service";
 
 @Component({
@@ -10,6 +10,8 @@ import {ScoutService} from "../../services/scout.service";
 })
 export class HomePageComponent {
   private scoutsObservables$: Observable<Observable<{ scoutId: string, name: string }>[]>;
+  private loadingScoutNames: string[] = [];
+  private loadingScoutNames$: Subject<string[]> = new Subject();
 
   constructor(public scoutService: ScoutService) {
     this.scoutsObservables$ = this.scoutService.scoutsObservables$;
@@ -19,7 +21,13 @@ export class HomePageComponent {
     this.scoutService.joinScout(scoutId);
   }
 
-  public createScout(scoutName: string) {
-    this.scoutService.createScout(scoutName);
+  public async createScout(scoutName: string) {
+    this.loadingScoutNames = [...this.loadingScoutNames, scoutName];
+    this.loadingScoutNames$.next(this.loadingScoutNames);
+
+    await this.scoutService.createScout(scoutName);
+
+    this.loadingScoutNames = this.loadingScoutNames.filter(loadingScoutName => loadingScoutName !== scoutName);
+    this.loadingScoutNames$.next(this.loadingScoutNames);
   }
 }

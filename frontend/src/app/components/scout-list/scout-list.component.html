@@ -1,14 +1,18 @@
 <ul class="scout-list">
   <ng-container class="scout" *ngFor="let scout$ of scoutsObservables$ | async">
-    <ng-container *ngIf="scout$ | async as scout">
-      <li>
-        <p class="scout-name">{{scout.name}}</p>
-        <div>
-          scout-id:
-          <span class="scout-id">{{scout.scoutId}}</span>
-          <span class="scout-loading-indicator is-inline-block"></span>
-        </div>
-      </li>
-    </ng-container>
+    <li *ngIf="scout$ | async as scout">
+      <p class="scout-name">{{scout.name}}</p>
+      <div>
+        scout-id:
+        <span class="scout-id">{{scout.scoutId}}</span>
+      </div>
+    </li>
   </ng-container>
+  <li *ngFor="let loadingScoutName of loadingScoutNames$ | async">
+    <p class="scout-name">{{loadingScoutName}}</p>
+    <div>
+      scout-id:
+      <span class="scout-loading-indicator is-inline-block"></span>
+    </div>
+  </li>
 </ul>

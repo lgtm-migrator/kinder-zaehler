@@ -13,7 +13,6 @@ export class ScoutService {
   public scoutsObservables$: Observable<Observable<{ scoutId: string, name: string }>[]>;
 
   private scouts$: { [scoutId: string]: Observable<{ scoutId: string, name: string }> } = {};
-  private loadingScoutNames: Set<string> = new Set();
   private _joinScout = this.angularFireFunctions.httpsCallable('joinScout');
   private _createScout = this.angularFireFunctions.httpsCallable('createScout');
 
@@ -34,9 +33,9 @@ export class ScoutService {
   }
 
   public createScout(name: string) {
-    this._createScout({
+    return this._createScout({
       name
-    });
+    }).toPromise();
   }
 
   public joinScout(scoutId: string) {
@@ -44,7 +43,7 @@ export class ScoutService {
       scoutId
     });
   }
-  
+
   private mapScoutIdsToScouts$(scoutIds: string[]): Observable<{ scoutId: string, name: string }>[] {
     return scoutIds.map(scoutId => {
       const newScouts$ = {};
