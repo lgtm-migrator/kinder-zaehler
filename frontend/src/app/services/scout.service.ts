@@ -11,7 +11,9 @@ import {AuthService} from "./auth.service";
 export class ScoutService {
   public scoutIds$: Observable<string[]>;
   public scoutsObservables$: Observable<Observable<{ scoutId: string, name: string }>[]>;
-
+  
+  private _joinScout = this.angularFireFunctions.httpsCallable('joinScout');
+  private _createScout = this.angularFireFunctions.httpsCallable('createScout');
 
   constructor(
     private angularFirestore: AngularFirestore,
@@ -42,15 +44,13 @@ export class ScoutService {
   }
 
   createScout(name: string) {
-    const createScoutFunction = this.angularFireFunctions.httpsCallable('createScout');
-    createScoutFunction({
+    this._createScout({
       name
     });
   }
 
   joinScout(scoutId: string) {
-    const joinScoutFunction = this.angularFireFunctions.httpsCallable('joinScout');
-    joinScoutFunction({
+    this._joinScout({
       scoutId
     });
   }
