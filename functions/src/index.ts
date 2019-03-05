@@ -84,6 +84,38 @@ export const joinScout = functions.https.onCall(async (data, context) => {
   return;
 });
 
+export const leaveScout = functions.https.onCall(async (data, context) => {
+  if (context.auth === undefined) {
+    return;
+  }
+
+  if (data.scoutId === undefined || typeof data.scoutId !== 'string') {
+    return;
+  }
+
+  const scoutId = data.scoutId;
+
+
+  const userRef = await firestore.collection('users').doc(context.auth.uid);
+  const userSnapshot = await userRef.get();
+
+  if (userSnapshot === undefined || !userSnapshot.exists) {
+    console.error(`uid: '${context.auth.uid}' has no firestore object`);
+    return;
+  }
+
+  const userData = userSnapshot.data();
+
+  if (userData === undefined) {
+    console.error("user has not initialized user space");
+    return;
+  }
+
+  userData.scouts = userData.scouts.filter((s: string) => s !== scoutId);
+  await userRef.set(userData);
+  return;
+});
+
 
 export const createInitialUserData = functions.auth.user().onCreate(async (event) => {
   const userRef = await firestore.collection('users').doc(event.uid);
