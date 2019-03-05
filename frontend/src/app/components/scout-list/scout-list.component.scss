@@ -1,3 +1,5 @@
+@import "bulma/sass/utilities/initial-variables";
+
 .scout-list {
   .scout-name {
     font-weight: bold;
@@ -5,6 +7,14 @@
   }
 
   .scout-id {
-    color: #2798F7;
+    color: $blue;
+  }
+
+  .scout-loading-indicator {
+    $grey-lighter: $blue;
+    @import "bulma/sass/utilities/mixins";
+    @include loader();
+    position: relative;
+    top: 3px;
   }
 }
