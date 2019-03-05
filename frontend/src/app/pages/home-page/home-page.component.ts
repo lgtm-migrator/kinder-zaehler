@@ -30,4 +30,8 @@ export class HomePageComponent {
     this.loadingScoutNames = this.loadingScoutNames.filter(loadingScoutName => loadingScoutName !== scoutName);
     this.loadingScoutNames$.next(this.loadingScoutNames);
   }
+
+  public leaveScout(scoutId: string) {
+    this.scoutService.leaveScout(scoutId);
+  }
 }

@@ -15,6 +15,7 @@ export class ScoutService {
   private scouts$: { [scoutId: string]: Observable<{ scoutId: string, name: string }> } = {};
   private _joinScout = this.angularFireFunctions.httpsCallable('joinScout');
   private _createScout = this.angularFireFunctions.httpsCallable('createScout');
+  private _leaveScout = this.angularFireFunctions.httpsCallable('leaveScout');
 
   constructor(
     private angularFirestore: AngularFirestore,
@@ -40,6 +41,12 @@ export class ScoutService {
 
   public joinScout(scoutId: string) {
     this._joinScout({
+      scoutId
+    });
+  }
+
+  public leaveScout(scoutId: string) {
+    this._leaveScout({
       scoutId
     });
   }

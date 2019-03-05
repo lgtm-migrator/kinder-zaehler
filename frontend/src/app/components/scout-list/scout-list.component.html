@@ -1,12 +1,16 @@
 <ul class="scout-list">
   <ng-container class="scout" *ngFor="let scout$ of scoutsObservables$ | async">
-    <li *ngIf="scout$ | async as scout">
-      <p class="scout-name">{{scout.name}}</p>
-      <div>
-        scout-id:
-        <span class="scout-id">{{scout.scoutId}}</span>
-      </div>
-    </li>
+    <ng-container *ngIf="scout$ | async as scout">
+      <li *ngIf="!scout.isDeleted">
+        <p class="scout-name">{{scout.name}}</p>
+        <div>
+          scout-id:
+          <span class="scout-id">{{scout.scoutId}}</span>
+          <i class="icon fa fa-sign-out" (click)="emitLeaveScout(scout)"></i>
+        </div>
+      </li>
+    </ng-container>
+
   </ng-container>
   <li *ngFor="let loadingScoutName of loadingScoutNames$ | async">
     <p class="scout-name">{{loadingScoutName}}</p>
