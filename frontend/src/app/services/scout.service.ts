@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {AngularFirestore} from "@angular/fire/firestore";
-import {AngularFireFunctions} from "@angular/fire/functions";
-import {Observable} from "rxjs";
-import {map, tap} from "rxjs/operators";
-import {AuthService} from "./auth.service";
+import {AngularFirestore} from '@angular/fire/firestore';
+import {AngularFireFunctions} from '@angular/fire/functions';
+import {combineLatest, Observable, Subject, Subscription} from 'rxjs';
+import {map, tap,} from 'rxjs/operators';
+import {AuthService} from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +11,15 @@ import {AuthService} from "./auth.service";
 export class ScoutService {
   public scoutIds$: Observable<string[]>;
   public scoutsObservables$: Observable<Observable<{ scoutId: string, name: string }>[]>;
+  public scouts$: Subject<{ scoutId: string, name: string }[]> = new Subject();
 
-  private scouts$: { [scoutId: string]: Observable<{ scoutId: string, name: string }> } = {};
+  private scoutObservablesCache: { [scoutId: string]: Observable<{ scoutId: string, name: string }> } = {};
   private _joinScout = this.angularFireFunctions.httpsCallable('joinScout');
   private _createScout = this.angularFireFunctions.httpsCallable('createScout');
   private _leaveScout = this.angularFireFunctions.httpsCallable('leaveScout');
+
+  private scoutsObservables$$: Subscription = null;
+  private scouts$$: Subscription = null;
 
   constructor(
     private angularFirestore: AngularFirestore,
@@ -30,6 +34,15 @@ export class ScoutService {
     this.scoutsObservables$ = this.scoutIds$.pipe(
       map((scoutIds) => this.mapScoutIdsToScouts$(scoutIds)),
     );
+
+    this.scoutsObservables$$ = this.scoutsObservables$.subscribe((scoutObservables => {
+      if (this.scouts$$) {
+        this.scouts$$.unsubscribe();
+      }
+      this.scouts$$ = combineLatest(...scoutObservables).subscribe((scouts => {
+        this.scouts$.next(scouts);
+      }));
+    }));
 
   }
 
@@ -46,20 +59,20 @@ export class ScoutService {
   }
 
   public leaveScout(scoutId: string) {
-    this._leaveScout({
+    return this._leaveScout({
       scoutId
-    });
+    }).toPromise();
   }
 
   private mapScoutIdsToScouts$(scoutIds: string[]): Observable<{ scoutId: string, name: string }>[] {
     return scoutIds.map(scoutId => {
       const newScouts$ = {};
-      if (this.scouts$[scoutId] === undefined) {
+      if (this.scoutObservablesCache[scoutId] === undefined) {
         newScouts$[scoutId] = this.getScout$(scoutId);
       } else {
-        newScouts$[scoutId] = this.scouts$[scoutId];
+        newScouts$[scoutId] = this.scoutObservablesCache[scoutId];
       }
-      this.scouts$ = newScouts$;
+      this.scoutObservablesCache = newScouts$;
       return newScouts$[scoutId];
     });
   }
@@ -67,10 +80,10 @@ export class ScoutService {
   private getScout$(scoutId: string): Observable<{ name: string, scoutId: string }> {
     return this.getScoutDoc(scoutId).valueChanges().pipe(
       map((value) => {
-        return {scoutId, name: value.name}
+        return {scoutId, name: value.name};
       }),
       tap(val => console.log('received scouts: ', val))
-    )
+    );
   }
 
   private getScoutDoc(scoutId: string) {
@@ -82,6 +95,6 @@ export class ScoutService {
   private getUserDoc() {
     return this.angularFirestore
       .collection(`users`)
-      .doc<{ scouts: string[] }>(this.auth.userId)
+      .doc<{ scouts: string[] }>(this.auth.userId);
   }
 }

@@ -5,8 +5,7 @@
 
   <div class="column scout-list">
     <app-scout-list
-      [scoutsObservables$]="scoutsObservables$"
-      [loadingScoutNames$]="loadingScoutNames$"
+      [scouts$]="scouts$"
       (leaveScout)="leaveScout($event)"
     ></app-scout-list>
   </div>
