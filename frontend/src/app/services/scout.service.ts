@@ -1,8 +1,9 @@
 import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {AngularFireFunctions} from '@angular/fire/functions';
-import {combineLatest, Observable, Subject, Subscription} from 'rxjs';
+import {BehaviorSubject, combineLatest, Observable, Subject, Subscription} from 'rxjs';
 import {map, tap,} from 'rxjs/operators';
+import {Scout} from "../models/scout.model";
 import {AuthService} from './auth.service';
 
 @Injectable({
@@ -10,16 +11,20 @@ import {AuthService} from './auth.service';
 })
 export class ScoutService {
   public scoutIds$: Observable<string[]>;
-  public scoutsObservables$: Observable<Observable<{ scoutId: string, name: string }>[]>;
-  public scouts$: Subject<{ scoutId: string, name: string }[]> = new Subject();
+  public scouts$: Observable<Scout[]>;
 
-  private scoutObservablesCache: { [scoutId: string]: Observable<{ scoutId: string, name: string }> } = {};
+  private scoutDocs$: Subject<Scout[]> = new Subject();
+  private reloadScouts$: Subject<void> = new BehaviorSubject(undefined);
+  private scoutObservablesCache: { [scoutId: string]: Observable<Scout> } = {};
+  private loadingScoutNames: Set<string> = new Set();
+  private deletedScoutIds: Set<string> = new Set();
+
   private _joinScout = this.angularFireFunctions.httpsCallable('joinScout');
   private _createScout = this.angularFireFunctions.httpsCallable('createScout');
   private _leaveScout = this.angularFireFunctions.httpsCallable('leaveScout');
 
   private scoutsObservables$$: Subscription = null;
-  private scouts$$: Subscription = null;
+  private scoutDocs$$: Subscription = null;
 
   constructor(
     private angularFirestore: AngularFirestore,
@@ -31,22 +36,42 @@ export class ScoutService {
         tap(val => console.log('received scoutIds: ', val))
       );
 
-    this.scoutsObservables$ = this.scoutIds$.pipe(
-      map((scoutIds) => this.mapScoutIdsToScouts$(scoutIds)),
+    this.scouts$ = combineLatest(this.scoutDocs$, this.reloadScouts$).pipe(
+      map(([scouts,]: [Scout[], void]) => {
+        scouts.forEach(scout => {
+          if (this.loadingScoutNames.has(scout.name)) {
+            this.loadingScoutNames.delete(scout.name);
+          }
+
+          if (!this.deletedScoutIds.has(scout.scoutId)) {
+            this.deletedScoutIds.delete(scout.scoutId);
+          }
+        });
+
+        const filteredScouts = scouts
+          .filter(scout => !this.deletedScoutIds.has(scout.scoutId));
+
+        const loadingScouts = this.getLoadingScouts();
+        return [...filteredScouts, ...loadingScouts];
+      })
     );
 
-    this.scoutsObservables$$ = this.scoutsObservables$.subscribe((scoutObservables => {
-      if (this.scouts$$) {
-        this.scouts$$.unsubscribe();
+    this.scoutsObservables$$ = this.scoutIds$.pipe(
+      map((scoutIds) => this.mapScoutIdsToScouts$(scoutIds)),
+    ).subscribe((scoutObservables => {
+      if (this.scoutDocs$$) {
+        this.scoutDocs$$.unsubscribe();
       }
-      this.scouts$$ = combineLatest(...scoutObservables).subscribe((scouts => {
-        this.scouts$.next(scouts);
+      this.scoutDocs$$ = combineLatest(...scoutObservables).subscribe((scouts => {
+        this.scoutDocs$.next(scouts);
       }));
     }));
-
   }
 
   public createScout(name: string) {
+    this.loadingScoutNames.add(name);
+    this.reloadScouts$.next();
+
     return this._createScout({
       name
     }).toPromise();
@@ -59,12 +84,15 @@ export class ScoutService {
   }
 
   public leaveScout(scoutId: string) {
+    this.deletedScoutIds.add(scoutId);
+    this.reloadScouts$.next();
+
     return this._leaveScout({
       scoutId
     }).toPromise();
   }
 
-  private mapScoutIdsToScouts$(scoutIds: string[]): Observable<{ scoutId: string, name: string }>[] {
+  private mapScoutIdsToScouts$(scoutIds: string[]): Observable<Scout>[] {
     return scoutIds.map(scoutId => {
       const newScouts$ = {};
       if (this.scoutObservablesCache[scoutId] === undefined) {
@@ -77,10 +105,10 @@ export class ScoutService {
     });
   }
 
-  private getScout$(scoutId: string): Observable<{ name: string, scoutId: string }> {
+  private getScout$(scoutId: string): Observable<Scout> {
     return this.getScoutDoc(scoutId).valueChanges().pipe(
       map((value) => {
-        return {scoutId, name: value.name};
+        return {scoutId, name: value.name, isLoading: false};
       }),
       tap(val => console.log('received scouts: ', val))
     );
@@ -97,4 +125,17 @@ export class ScoutService {
       .collection(`users`)
       .doc<{ scouts: string[] }>(this.auth.userId);
   }
+
+  private getLoadingScouts() {
+    const loadingScouts: Scout[] = [];
+    for (let scoutName of this.loadingScoutNames) {
+      loadingScouts.push({
+        scoutId: undefined,
+        name: scoutName,
+        isLoading: true,
+      });
+    }
+    return loadingScouts;
+  }
 }
+
