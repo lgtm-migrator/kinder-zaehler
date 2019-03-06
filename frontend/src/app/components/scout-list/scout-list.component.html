@@ -1,16 +1,12 @@
 <ul class="scout-list">
   <li class="scout level  is-mobile" *ngFor="let scout of scouts$ | async" [routerLink]="['/scout', scout.scoutId]">
     <div class="level-left">
-      <div class="level-item">
+      <div class="level-item is-block">
+        <p class="scout-name">{{scout.name}}</p>
         <div>
-          <p class="scout-name">{{scout.name}}</p>
-          <div>
-            scout-id:
-            <ng-container *ngIf="!scout.isLoading">
-              <span class="scout-id">{{scout.scoutId}}</span>
-            </ng-container>
-            <span *ngIf="scout.isLoading" class="scout-loading-indicator is-inline-block"></span>
-          </div>
+          scout-id:
+          <span *ngIf="!scout.isLoading" class="scout-id">{{scout.scoutId}}</span>
+          <span *ngIf="scout.isLoading" class="scout-loading-indicator is-inline-block"></span>
         </div>
       </div>
     </div>
