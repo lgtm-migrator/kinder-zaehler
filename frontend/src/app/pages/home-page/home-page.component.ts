@@ -10,7 +10,8 @@ import {ScoutService} from '../../services/scout.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomePageComponent {
-  private scouts$: Observable<{ scoutId: string, name: string, isLoading?: boolean }[]>;
+  public scouts$: Observable<{ scoutId: string, name: string, isLoading?: boolean }[]>;
+
   private reloadScouts$: BehaviorSubject<void> = new BehaviorSubject(undefined);
   private loadingScoutNames: Set<string> = new Set();
   private deletedScoutIds: Set<string> = new Set();
