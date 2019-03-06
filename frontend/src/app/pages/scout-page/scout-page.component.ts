@@ -1,6 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
-import {Subscription} from "rxjs";
+import {Observable, Subscription} from "rxjs";
+import {Child} from "../../models/child.model";
+import {ChildService} from "../../services/child.service";
 
 @Component({
   selector: 'app-scout-page',
@@ -10,14 +12,17 @@ import {Subscription} from "rxjs";
 export class ScoutPageComponent implements OnInit, OnDestroy {
   private scoutId: string = undefined;
   private params$$: Subscription;
+  private children$: Observable<Child[]>;
 
-  constructor(private route: ActivatedRoute) {
+  constructor(
+    private route: ActivatedRoute,
+    private childService: ChildService) {
   }
 
   public ngOnInit() {
     this.params$$ = this.route.params.subscribe(params => {
       this.scoutId = params['scoutId'];
-      console.log("scoutId: ", this.scoutId)
+      this.children$ = this.childService.getChildren$(this.scoutId);
     });
   }
 

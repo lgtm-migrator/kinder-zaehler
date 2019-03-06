@@ -93,6 +93,12 @@ export class ScoutService {
     }).toPromise();
   }
 
+  public getScoutDoc(scoutId: string) {
+    return this.angularFirestore
+      .collection('scouts')
+      .doc<{ name: string }>(scoutId);
+  }
+
   private mapScoutIdsToScouts$(scoutIds: string[]): Observable<Scout>[] {
     return scoutIds.map(scoutId => {
       const newScouts$ = {};
@@ -111,14 +117,8 @@ export class ScoutService {
       map((value) => {
         return {scoutId, name: value.name, isLoading: false};
       }),
-      tap(val => console.log('received scouts: ', val))
+      tap(val => console.log('received scout: ', val))
     );
-  }
-
-  private getScoutDoc(scoutId: string) {
-    return this.angularFirestore
-      .collection('scouts')
-      .doc<{ name: string }>(scoutId);
   }
 
   private getLoadingScouts() {

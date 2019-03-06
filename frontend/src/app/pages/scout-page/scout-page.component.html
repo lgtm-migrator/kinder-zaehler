@@ -1,3 +1,1 @@
-<p>
-  scout-page works!
-</p>
+<p *ngFor="let child of children$ | async">{{child.name}}</p>
