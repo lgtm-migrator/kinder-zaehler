@@ -1,5 +1,6 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 import {Observable} from 'rxjs';
+import {Scout} from "../../models/scout.model";
 
 @Component({
   selector: 'app-scout-list',
@@ -8,10 +9,10 @@ import {Observable} from 'rxjs';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ScoutListComponent {
-  @Input() public scouts$: Observable<{ scoutId: string, name: string, isLoading?: boolean }[]>;
+  @Input() public scouts$: Observable<Scout[]>;
   @Output() public leaveScout: EventEmitter<string> = new EventEmitter();
 
-  public emitLeaveScout(scout: { scoutId: string, name: string, isDeleted?: boolean }) {
-    this.leaveScout.emit(scout.scoutId);
+  public emitLeaveScout(scoutId: string) {
+    this.leaveScout.emit(scoutId);
   }
 }
