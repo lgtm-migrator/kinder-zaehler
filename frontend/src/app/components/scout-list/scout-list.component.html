@@ -1,5 +1,5 @@
 <ul class="scout-list">
-  <li class="scout" *ngFor="let scout of scouts$ | async">
+  <li class="scout" *ngFor="let scout of scouts$ | async" [routerLink]="['/scout', scout.scoutId]">
     <p class="scout-name">{{scout.name}}</p>
     <div>
       scout-id:

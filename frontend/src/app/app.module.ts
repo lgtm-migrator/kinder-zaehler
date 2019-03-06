@@ -17,6 +17,7 @@ import {AuthPageComponent} from './pages/auth-page/auth-page.component';
 import {HomePageComponent} from './pages/home-page/home-page.component';
 import { CreateScoutFormComponent } from './components/create-scout-form/create-scout-form.component';
 import { ScoutListComponent } from './components/scout-list/scout-list.component';
+import { ScoutPageComponent } from './pages/scout-page/scout-page.component';
 
 @NgModule({
   declarations: [
@@ -29,6 +30,7 @@ import { ScoutListComponent } from './components/scout-list/scout-list.component
     JoinScoutFormComponent,
     CreateScoutFormComponent,
     ScoutListComponent,
+    ScoutPageComponent,
   ],
   imports: [
     BrowserModule,

@@ -5,14 +5,17 @@ import {RegisterFormComponent} from "./components/register-form/register-form.co
 import {AuthGuard} from "./guards/auth.guard";
 import {AuthPageComponent} from "./pages/auth-page/auth-page.component";
 import {HomePageComponent} from "./pages/home-page/home-page.component";
+import {ScoutPageComponent} from "./pages/scout-page/scout-page.component";
 
 const routes: Routes = [
   {component: HomePageComponent, path: '', pathMatch: 'full', canActivate: [AuthGuard]},
+  {component: ScoutPageComponent, path: 'scout/:scoutId', pathMatch: 'full', canActivate: [AuthGuard]},
   {
-    component: AuthPageComponent, path: '', children: [
-      {component: LoginFormComponent, path: 'login'},
-      {component: RegisterFormComponent, path: 'register'}
-    ]
+    component: AuthPageComponent, path: '', children:
+      [
+        {component: LoginFormComponent, path: 'login'},
+        {component: RegisterFormComponent, path: 'register'}
+      ]
   },
 
 ];
