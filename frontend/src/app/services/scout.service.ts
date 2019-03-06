@@ -13,7 +13,7 @@ export class ScoutService {
   public scoutIds$: Observable<string[]>;
   public scouts$: Observable<Scout[]>;
 
-  private scoutDocs$: Subject<Scout[]> = new Subject();
+  private scoutDocs$: Subject<Scout[]> = new BehaviorSubject([]);
   private reloadScouts$: Subject<void> = new BehaviorSubject(undefined);
   private scoutObservablesCache: { [scoutId: string]: Observable<Scout> } = {};
   private loadingScoutNames: Set<string> = new Set();
