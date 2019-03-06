@@ -10,9 +10,9 @@ import {ChildService} from "../../services/child.service";
   styleUrls: ['./scout-page.component.scss']
 })
 export class ScoutPageComponent implements OnInit, OnDestroy {
+  public children$: Observable<Child[]>;
   private scoutId: string = undefined;
   private params$$: Subscription;
-  private children$: Observable<Child[]>;
 
   constructor(
     private route: ActivatedRoute,
