@@ -8,10 +8,15 @@ if (environment.production) {
   enableProdMode();
 }
 
-window.addEventListener('resize', () => {
+function setVhCssProperty() {
   const vh = window.innerHeight * 0.01;
   document.documentElement.style.setProperty('--vh', `${vh}px`);
+}
+
+window.addEventListener('resize', () => {
+  setVhCssProperty();
 });
+setVhCssProperty();
 
 platformBrowserDynamic().bootstrapModule(AppModule)
   .catch(err => console.error(err));
