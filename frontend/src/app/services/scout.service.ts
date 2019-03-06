@@ -4,7 +4,7 @@ import {AngularFireFunctions} from '@angular/fire/functions';
 import {BehaviorSubject, combineLatest, Observable, Subject, Subscription} from 'rxjs';
 import {map, tap,} from 'rxjs/operators';
 import {Scout} from "../models/scout.model";
-import {AuthService} from './auth.service';
+import {UserService} from "./user.service";
 
 @Injectable({
   providedIn: 'root'
@@ -29,8 +29,9 @@ export class ScoutService {
   constructor(
     private angularFirestore: AngularFirestore,
     private angularFireFunctions: AngularFireFunctions,
-    private auth: AuthService) {
-    this.scoutIds$ = this.getUserDoc()
+    private userService: UserService
+  ) {
+    this.scoutIds$ = this.userService.getUserDoc()
       .valueChanges().pipe(
         map((value => (value) ? value.scouts : [])),
         tap(val => console.log('received scoutIds: ', val))
@@ -118,12 +119,6 @@ export class ScoutService {
     return this.angularFirestore
       .collection('scouts')
       .doc<{ name: string }>(scoutId);
-  }
-
-  private getUserDoc() {
-    return this.angularFirestore
-      .collection(`users`)
-      .doc<{ scouts: string[] }>(this.auth.userId);
   }
 
   private getLoadingScouts() {
