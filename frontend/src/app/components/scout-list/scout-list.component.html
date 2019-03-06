@@ -1,13 +1,24 @@
 <ul class="scout-list">
-  <li class="scout" *ngFor="let scout of scouts$ | async" [routerLink]="['/scout', scout.scoutId]">
-    <p class="scout-name">{{scout.name}}</p>
-    <div>
-      scout-id:
-      <ng-container *ngIf="!scout.isLoading">
-        <span class="scout-id">{{scout.scoutId}}</span>
-        <i class="icon fa fa-sign-out" (click)="emitLeaveScout(scout.scoutId)"></i>
-      </ng-container>
-      <span *ngIf="scout.isLoading" class="scout-loading-indicator is-inline-block"></span>
+  <li class="scout level  is-mobile" *ngFor="let scout of scouts$ | async" [routerLink]="['/scout', scout.scoutId]">
+    <div class="level-left">
+      <div class="level-item">
+        <div>
+          <p class="scout-name">{{scout.name}}</p>
+          <div>
+            scout-id:
+            <ng-container *ngIf="!scout.isLoading">
+              <span class="scout-id">{{scout.scoutId}}</span>
+            </ng-container>
+            <span *ngIf="scout.isLoading" class="scout-loading-indicator is-inline-block"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!scout.isLoading" class="level-right">
+      <span class="icon is-medium">
+        <i class="level-item fa fa-lg fa-sign-out" (click)="emitLeaveScout(scout.scoutId)"></i>
+      </span>
     </div>
   </li>
 </ul>
