@@ -1,0 +1,17 @@
+<div class="modal is-active">
+  <div class="modal-background"></div>
+  <div class="modal-content">
+    <form class="box">
+      <div class="field">
+        <div class="control">
+          <input
+            name="scoutName"
+            class="input is-rounded padding" type="text" placeholder="scout name">
+        </div>
+      </div>
+      <button class="button is-link is-rounded is-fullwidth" type="submit">create new</button>
+    </form>
+
+  </div>
+  <button class="modal-close is-large" aria-label="close" (click)="overlayRef.dispose()"></button>
+</div>

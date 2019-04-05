@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CreateChildFormComponent } from './create-child-form.component';
+import { CreateChildDialogComponent } from './create-child-dialog.component';
 
-describe('CreateChildFormComponent', () => {
-  let component: CreateChildFormComponent;
-  let fixture: ComponentFixture<CreateChildFormComponent>;
+describe('CreateChildDialogComponent', () => {
+  let component: CreateChildDialogComponent;
+  let fixture: ComponentFixture<CreateChildDialogComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ CreateChildFormComponent ]
+      declarations: [ CreateChildDialogComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(CreateChildFormComponent);
+    fixture = TestBed.createComponent(CreateChildDialogComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
