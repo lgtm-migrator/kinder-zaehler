@@ -99,6 +99,15 @@ export class ScoutService {
       .doc<{ name: string }>(scoutId);
   }
 
+  public getScout$(scoutId: string): Observable<Scout> {
+    return this.getScoutDoc(scoutId).valueChanges().pipe(
+      map((value) => {
+        return {scoutId, name: value.name, isLoading: false};
+      }),
+      tap(val => console.log('received scout: ', val))
+    );
+  }
+
   private mapScoutIdsToScouts$(scoutIds: string[]): Observable<Scout>[] {
     return scoutIds.map(scoutId => {
       const newScouts$ = {};
@@ -110,15 +119,6 @@ export class ScoutService {
       this.scoutObservablesCache = newScouts$;
       return newScouts$[scoutId];
     });
-  }
-
-  private getScout$(scoutId: string): Observable<Scout> {
-    return this.getScoutDoc(scoutId).valueChanges().pipe(
-      map((value) => {
-        return {scoutId, name: value.name, isLoading: false};
-      }),
-      tap(val => console.log('received scout: ', val))
-    );
   }
 
   private getLoadingScouts() {

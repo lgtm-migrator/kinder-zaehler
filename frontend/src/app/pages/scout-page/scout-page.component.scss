@@ -1,0 +1,14 @@
+.columns {
+  margin: 20px;
+  height: calc(var(--vh, 1vh) * 100 - 40px);
+  flex-direction: column;
+  display: flex;
+}
+
+.children-list {
+  width: 100%;
+  flex-grow: 10;
+  align-self: flex-start;
+  overflow-y: auto;
+  overflow-x: hidden;
+}

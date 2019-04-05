@@ -9,7 +9,8 @@ import {ScoutPageComponent} from "./pages/scout-page/scout-page.component";
 
 const routes: Routes = [
   {component: HomePageComponent, path: '', pathMatch: 'full', canActivate: [AuthGuard]},
-  {component: ScoutPageComponent, path: 'scout/:scoutId', pathMatch: 'full', canActivate: [AuthGuard]},
+  {component: ScoutPageComponent, path: 'scout/:scoutId', canActivate: [AuthGuard]},
+  {path: 'scout', redirectTo: '/'},
   {
     component: AuthPageComponent, path: '', children:
       [

@@ -1,1 +1,23 @@
-<p *ngFor="let child of children$ | async">{{child.name}}</p>
+<div class="columns">
+  <div class="column">
+    <h1 class="title has-text-primary">
+      Scout:
+      <ng-container *ngIf="scout$ | async as scout; else loading">
+        {{ scout.name }}
+      </ng-container>
+      <ng-template #loading>
+        Loading...
+      </ng-template>
+    </h1>
+  </div>
+
+  <div class="column children-list">
+    <p *ngFor="let child of children$ | async">{{child.name}}</p>
+  </div>
+
+  <div class="column">
+    <app-create-child-form class="box"></app-create-child-form>
+  </div>
+</div>
+
+
