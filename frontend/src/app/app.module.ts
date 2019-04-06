@@ -11,7 +11,7 @@ import {environment} from "../environments/environment";
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {CreateChildDialogComponent} from './components/create-child-dialog/create-child-dialog.component';
-import {CreateChildButtonComponent} from './components/create-child-form/create-child-button.component';
+import {CreateChildButtonComponent} from './components/create-child-button/create-child-button.component';
 import {CreateScoutFormComponent} from './components/create-scout-form/create-scout-form.component';
 import {GoogleSignInButtonComponent} from './components/google-sign-in-button/google-sign-in-button.component';
 import {JoinScoutFormComponent} from './components/join-scout-form/join-scout-form.component';
