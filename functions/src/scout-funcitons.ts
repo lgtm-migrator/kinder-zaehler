@@ -1,5 +1,6 @@
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
+import {getUserData} from "./util";
 
 const firestore = admin.firestore();
 
@@ -17,15 +18,7 @@ export const createScout = functions.https.onCall(async (data, context) => {
   });
   const scoutId = scoutRef.id;
 
-  const userRef = await firestore.collection('users').doc(context.auth.uid);
-  const userSnapshot = await userRef.get();
-
-  if (userSnapshot === undefined || !userSnapshot.exists) {
-    console.error(`uid: '${context.auth.uid}' has no firestore object`);
-    return;
-  }
-
-  const userData = userSnapshot.data();
+  const {userRef, userData} = await getUserData(context.auth.uid);
 
   if (userData === undefined) {
     return;
@@ -54,18 +47,9 @@ export const joinScout = functions.https.onCall(async (data, context) => {
     return;
   }
 
-  const userRef = await firestore.collection('users').doc(context.auth.uid);
-  const userSnapshot = await userRef.get();
-
-  if (userSnapshot === undefined || !userSnapshot.exists) {
-    console.error(`uid: '${context.auth.uid}' has no firestore object`);
-    return;
-  }
-
-  const userData = userSnapshot.data();
+  const {userRef, userData} = await getUserData(context.auth.uid);
 
   if (userData === undefined) {
-    console.error("user has not initialized user space");
     return;
   }
 
@@ -88,20 +72,9 @@ export const leaveScout = functions.https.onCall(async (data, context) => {
   }
 
   const scoutId = data.scoutId;
-
-
-  const userRef = await firestore.collection('users').doc(context.auth.uid);
-  const userSnapshot = await userRef.get();
-
-  if (userSnapshot === undefined || !userSnapshot.exists) {
-    console.error(`uid: '${context.auth.uid}' has no firestore object`);
-    return;
-  }
-
-  const userData = userSnapshot.data();
+  const {userRef, userData} = await getUserData(context.auth.uid);
 
   if (userData === undefined) {
-    console.error("user has not initialized user space");
     return;
   }
 
