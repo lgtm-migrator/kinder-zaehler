@@ -1,6 +1,7 @@
 import {Overlay, OverlayRef} from "@angular/cdk/overlay";
 import {ComponentPortal, PortalInjector} from "@angular/cdk/portal";
 import {Component, EventEmitter, Injector, OnInit, Output} from '@angular/core';
+import {merge} from "rxjs";
 import {CreateChildDialogComponent} from "../create-child-dialog/create-child-dialog.component";
 
 @Component({
@@ -17,10 +18,7 @@ export class CreateChildButtonComponent implements OnInit {
   }
 
   public openCreateChildDialog(): void {
-    const overlayRef = this.overlay.create({
-      height: '400px',
-      width: '600px',
-    });
+    const overlayRef = this.overlay.create();
 
     const injectionTokens = new WeakMap();
     injectionTokens.set(OverlayRef, overlayRef);
@@ -29,6 +27,12 @@ export class CreateChildButtonComponent implements OnInit {
     userProfilePortal.injector = new PortalInjector(this.injector, injectionTokens);
 
     const componentRef = overlayRef.attach(userProfilePortal);
+
+
+    const subscription$$ = merge(componentRef.instance.close, overlayRef.backdropClick()).subscribe(() => {
+      overlayRef.detach();
+      subscription$$.unsubscribe();
+    })
   }
 
   public ngOnInit(): void {
