@@ -10,6 +10,7 @@ import {Subject} from "rxjs";
 })
 export class CreateChildDialogComponent implements OnInit {
   public close = new Subject<void>();
+  public create = new Subject<{ name: string, loaded: false }>();
 
 
   constructor(private overlayRef: OverlayRef) {

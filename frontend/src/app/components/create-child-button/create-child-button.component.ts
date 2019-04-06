@@ -1,6 +1,7 @@
 import {Overlay, OverlayRef} from "@angular/cdk/overlay";
 import {ComponentPortal, PortalInjector} from "@angular/cdk/portal";
 import {Component, EventEmitter, Injector, OnInit, Output} from '@angular/core';
+import {merge} from "rxjs";
 import {CreateChildDialogComponent} from "../create-child-dialog/create-child-dialog.component";
 
 @Component({
@@ -26,8 +27,13 @@ export class CreateChildButtonComponent implements OnInit {
     userProfilePortal.injector = new PortalInjector(this.injector, injectionTokens);
 
     const componentRef = overlayRef.attach(userProfilePortal);
+    const instance = componentRef.instance;
 
-    const subscription$$ = componentRef.instance.close.subscribe(() => {
+
+    const subscription$$ = merge(instance.close, instance.create).subscribe((value) => {
+      if (value) {
+        
+      }
       overlayRef.detach();
       subscription$$.unsubscribe();
     })
