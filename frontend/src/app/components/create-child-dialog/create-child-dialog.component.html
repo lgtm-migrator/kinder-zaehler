@@ -1,17 +1,20 @@
-<div class="modal is-active">
-  <div class="modal-background"></div>
-  <div class="modal-content">
-    <form class="box">
-      <div class="field">
-        <div class="control">
-          <input
-            name="scoutName"
-            class="input is-rounded padding" type="text" placeholder="scout name">
-        </div>
-      </div>
-      <button class="button is-link is-rounded is-fullwidth" type="submit">create new</button>
-    </form>
+<app-modal (close)="close.next()">
+  <div class="columns">
+    <div class="column">
+      <h1 class="title has-text-primary">create child</h1>
+    </div>
 
+    <div class="column">
+      <form class="create-child-form">
+        <div class="field">
+          <div class="control">
+            <input
+              name="scoutName"
+              class="input is-rounded padding" type="text" placeholder="scout name">
+          </div>
+        </div>
+        <button class="button is-link is-rounded is-fullwidth" type="submit">create new</button>
+      </form>
+    </div>
   </div>
-  <button class="modal-close is-large" aria-label="close" (click)="close.next()"></button>
-</div>
+</app-modal>

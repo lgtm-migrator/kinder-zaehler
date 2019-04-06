@@ -21,6 +21,7 @@ import {ScoutListComponent} from './components/scout-list/scout-list.component';
 import {AuthPageComponent} from './pages/auth-page/auth-page.component';
 import {HomePageComponent} from './pages/home-page/home-page.component';
 import {ScoutPageComponent} from './pages/scout-page/scout-page.component';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import {ScoutPageComponent} from './pages/scout-page/scout-page.component';
     ScoutPageComponent,
     CreateChildButtonComponent,
     CreateChildDialogComponent,
+    ModalComponent,
   ],
   imports: [
     OverlayModule,
