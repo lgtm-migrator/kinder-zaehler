@@ -34,4 +34,8 @@ export class ScoutPageComponent implements OnInit, OnDestroy {
   public ngOnDestroy(): void {
     this.params$$.unsubscribe();
   }
+
+  createChild(child: { name: string }) {
+    this.childService.createChild(child, this.scoutId);
+  }
 }

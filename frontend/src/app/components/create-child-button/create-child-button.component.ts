@@ -32,7 +32,7 @@ export class CreateChildButtonComponent implements OnInit {
 
     const subscription$$ = merge(instance.close, instance.create).subscribe((value) => {
       if (value) {
-        
+        this.createChild.emit(value)
       }
       overlayRef.detach();
       subscription$$.unsubscribe();

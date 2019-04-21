@@ -1,5 +1,4 @@
 export interface Child {
-  name: string
-} {
-
+  name: string,
+  loaded: boolean
 }

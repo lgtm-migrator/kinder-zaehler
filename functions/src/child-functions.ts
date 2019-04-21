@@ -9,7 +9,7 @@ export const createChild = functions.https.onCall(async (data: { name?: any, sco
     return;
   }
 
-  if (!data.name || typeof data.name !== 'string' || data.name.trim().length < 3) {
+  if (!data.name || typeof data.name !== 'string' || data.name.trim().length < 1) {
     return;
   }
 

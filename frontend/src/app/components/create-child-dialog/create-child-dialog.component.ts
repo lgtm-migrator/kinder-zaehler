@@ -1,5 +1,5 @@
 import {OverlayRef} from "@angular/cdk/overlay";
-import {ChangeDetectionStrategy, Component, OnInit} from '@angular/core';
+import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {Subject} from "rxjs";
 
 @Component({
@@ -8,15 +8,23 @@ import {Subject} from "rxjs";
   styleUrls: ['./create-child-dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CreateChildDialogComponent implements OnInit {
+export class CreateChildDialogComponent {
   public close = new Subject<void>();
-  public create = new Subject<{ name: string, loaded: false }>();
+  public create = new Subject<{ name: string }>();
 
+  public name: string = '';
+  public childNameEmpty: boolean = false;
 
   constructor(private overlayRef: OverlayRef) {
   }
 
-  ngOnInit() {
+  public onSubmit() {
+    this.name = this.name.trim();
+    if (this.name.length < 1) {
+      this.childNameEmpty = true;
+      return;
+    }
+    this.create.next({name: this.name});
+    this.childNameEmpty = false;
   }
-
 }

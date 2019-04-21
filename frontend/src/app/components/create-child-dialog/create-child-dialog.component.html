@@ -9,11 +9,16 @@
         <div class="field">
           <div class="control">
             <input
-              name="scoutName"
-              class="input is-rounded padding" type="text" placeholder="scout name">
+              name="childName"
+              [(ngModel)]="name"
+              class="input is-rounded padding" type="text" placeholder="child name">
           </div>
+          <p
+            *ngIf="childNameEmpty"
+            class="help is-danger"
+          >The child name field can't be Empty</p>
         </div>
-        <button class="button is-link is-rounded is-fullwidth" type="submit">create new</button>
+        <button class="button is-link is-rounded is-fullwidth" type="submit" (click)="onSubmit()">create new</button>
       </form>
     </div>
   </div>
