@@ -6,18 +6,16 @@ jobs:
     working_directory: ~/kinder-zaehler
     steps:
       - checkout
-      - run: cd frontend
-      - run: npm i
-      - run: npm run build
+      - run: cd frontend && npm i
+      - run: cd frontend && npm run build
   test:
     docker:
       - image: circleci/node:lts
     working_directory: ~/kinder-zaehler
     steps:
       - checkout
-      - run: cd frontend
-      - run: npm i
-      - run: npm run test
+      - run: cd frontend && npm i
+      - run: cd frontend && npm run test
 workflows:
   version: 2
   build_and_test:
