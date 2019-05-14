@@ -1,4 +1,4 @@
-@import "bulma/sass/utilities/initial-variables";
+@import "~bulma/sass/utilities/initial-variables";
 
 .scout-list {
   .scout-name {
@@ -12,7 +12,7 @@
 
   .scout-loading-indicator {
     $grey-lighter: $blue;
-    @import "bulma/sass/utilities/mixins";
+    @import "~bulma/sass/utilities/mixins";
     @include loader();
     position: relative;
     top: 3px;
