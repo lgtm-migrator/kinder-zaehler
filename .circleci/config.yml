@@ -3,17 +3,19 @@ jobs:
   build:
     docker:
       - image: circleci/node:ltsworking_directory
-    working_directory: ~/kinder-zaehler/frontend
+    working_directory: ~/kinder-zaehler
     steps:
       - checkout
+      - run: cd frontend
       - run: npm i
       - run: npm run build
   test:
     docker:
       - image: circleci/node:lts
-    working_directory: ~/kinder-zaehler/frontend
+    working_directory: ~/kinder-zaehler
     steps:
       - checkout
+      - run: cd frontend
       - run: npm i
       - run: npm run test
 workflows:
