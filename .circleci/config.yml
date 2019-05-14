@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:lts
+      - image: circleci/node:lts-browsers
     working_directory: ~/kinder-zaehler
     steps:
       - checkout
@@ -11,12 +11,12 @@ jobs:
 
   test:
     docker:
-      - image: circleci/node:lts
+      - image: circleci/node:lts-browsers
     working_directory: ~/kinder-zaehler
     steps:
       - checkout
       - run: cd frontend && npm i
-      - run: cd frontend && npm run test
+      - run: cd frontend && npm run ci:test
 workflows:
   version: 2
   build_and_test:
