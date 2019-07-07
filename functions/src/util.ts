@@ -17,7 +17,7 @@ export async function getUserData(userId: string): Promise<{ userRef: FirebaseFi
   return {userRef: userRef, userData: userData}
 }
 
-export async function hasUserAccsessToScout(userId: string, scoutId: string): Promise<boolean> {
+export async function hasUserAccessToScout(userId: string, scoutId: string): Promise<boolean> {
   const {userData} = await getUserData(userId);
 
   if (userData === undefined) {

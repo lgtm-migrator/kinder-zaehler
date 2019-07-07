@@ -1,6 +1,6 @@
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
-import {hasUserAccsessToScout} from "./util";
+import {hasUserAccessToScout} from "./util";
 
 const firestore = admin.firestore();
 
@@ -20,7 +20,7 @@ export const createChild = functions.https.onCall(async (data: { name?: any, sco
   const {name, scoutId} = data;
 
 
-  if (!await hasUserAccsessToScout(context.auth.uid, scoutId)) {
+  if (!await hasUserAccessToScout(context.auth.uid, scoutId)) {
     return;
   }
 
