@@ -8,7 +8,7 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Output} from '@angular
 })
 export class CreateScoutFormComponent {
   @Output() public createScout = new EventEmitter<string>();
-  public scoutName: string = '';
+  public scoutName = '';
   public scoutNameToShort = false;
 
 
@@ -19,6 +19,6 @@ export class CreateScoutFormComponent {
     }
     this.createScout.emit(this.scoutName);
     this.scoutNameToShort = false;
-    this.scoutName = "";
+    this.scoutName = '';
   }
 }
