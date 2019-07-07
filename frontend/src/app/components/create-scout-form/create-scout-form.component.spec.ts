@@ -1,6 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { CreateScoutFormComponent } from './create-scout-form.component';
+import {CreateScoutFormComponent} from './create-scout-form.component';
 
 describe('CreateScoutFormComponent', () => {
   // let component: CreateScoutFormComponent;

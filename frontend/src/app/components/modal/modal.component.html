@@ -1,9 +1,9 @@
 <div class="modal is-active">
-  <div class="modal-background" (click)="close.emit()"></div>
+  <div (click)="close.emit()" class="modal-background"></div>
   <div class="modal-content">
     <div class="box modal-content-margin">
       <ng-content></ng-content>
     </div>
   </div>
-  <button class="modal-close is-large" aria-label="close" (click)="close.emit()"></button>
+  <button (click)="close.emit()" aria-label="close" class="modal-close is-large"></button>
 </div>

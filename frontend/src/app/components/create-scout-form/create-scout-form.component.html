@@ -3,8 +3,9 @@
     <div class="control">
       <input
         [(ngModel)]="scoutName"
-        name="scoutName"
-        class="input is-rounded padding" type="text" placeholder="scout name">
+        class="input is-rounded padding"
+        aria-label="scout name"
+        name="scoutName" placeholder="scout name" type="text">
     </div>
     <p
       *ngIf="scoutNameToShort"

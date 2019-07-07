@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component, OnDestroy} from '@angular/core';
-import {Router} from "@angular/router";
-import {Subscription} from "rxjs";
-import {AuthService} from "../../services/auth.service";
+import {Router} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-auth-page',
@@ -15,14 +15,14 @@ export class AuthPageComponent implements OnDestroy {
   constructor(private auth: AuthService, private router: Router) {
     this.authState$$ = this.auth.user$.subscribe((user) => {
       if (user !== null) {
-        console.log("login as user: ", user.email);
-        router.navigate(['/'])
+        console.log('login as user: ', user.email);
+        router.navigate(['/']);
       }
-    })
+    });
   }
 
   public async onGoogleSingInClick() {
-    await this.auth.signInWithGoogle()
+    await this.auth.signInWithGoogle();
   }
 
   public ngOnDestroy(): void {

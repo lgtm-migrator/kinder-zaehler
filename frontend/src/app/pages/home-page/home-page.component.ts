@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {Observable} from 'rxjs';
-import {Scout} from "../../models/scout.model";
+import {Scout} from '../../models/scout.model';
 import {ScoutService} from '../../services/scout.service';
 
 @Component({

@@ -1,6 +1,6 @@
 import {ChangeDetectionStrategy, Component, EventEmitter, Input, Output} from '@angular/core';
 import {Observable} from 'rxjs';
-import {Scout} from "../../models/scout.model";
+import {Scout} from '../../models/scout.model';
 
 @Component({
   selector: 'app-scout-list',

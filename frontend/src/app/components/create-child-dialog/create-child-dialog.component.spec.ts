@@ -1,6 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { CreateChildDialogComponent } from './create-child-dialog.component';
+import {CreateChildDialogComponent} from './create-child-dialog.component';
 
 describe('CreateChildDialogComponent', () => {
   // let component: CreateChildDialogComponent;

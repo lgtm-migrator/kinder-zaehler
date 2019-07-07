@@ -1,8 +1,8 @@
 <div class="columns is-centered is-fullheight">
-  <section content="authentication" class="auth column is-4-desktop is-6-tablet is-full-mobile">
+  <section class="auth column is-4-desktop is-6-tablet is-full-mobile" content="authentication">
     <h2 class="title is-2 has-text-centered">Kinder Zähler</h2>
 
-    <app-google-sign-in-button class="google-sign-in" (click)="onGoogleSingInClick()"></app-google-sign-in-button>
+    <app-google-sign-in-button (click)="onGoogleSingInClick()" class="google-sign-in"></app-google-sign-in-button>
 
     <div class="box">
       <router-outlet></router-outlet>

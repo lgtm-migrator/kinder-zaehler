@@ -2,9 +2,9 @@ import {Injectable} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {AngularFireFunctions} from '@angular/fire/functions';
 import {BehaviorSubject, combineLatest, Observable, Subject, Subscription} from 'rxjs';
-import {map, tap,} from 'rxjs/operators';
-import {Scout} from "../models/scout.model";
-import {UserService} from "./user.service";
+import {map, tap} from 'rxjs/operators';
+import {Scout} from '../models/scout.model';
+import {UserService} from './user.service';
 
 @Injectable({
   providedIn: 'root'
@@ -38,7 +38,7 @@ export class ScoutService {
       );
 
     this.scouts$ = combineLatest(this.scoutDocs$, this.reloadScouts$).pipe(
-      map(([scouts,]: [Scout[], void]) => {
+      map(([scouts]: [Scout[], void]) => {
         scouts.forEach(scout => {
           if (this.loadingScoutNames.has(scout.name)) {
             this.loadingScoutNames.delete(scout.name);
@@ -58,7 +58,7 @@ export class ScoutService {
     );
 
     this.scoutsObservables$$ = this.scoutIds$.pipe(
-      map((scoutIds) => this.mapScoutIdsToScouts$(scoutIds)),
+      map((scoutIds) => this.mapScoutIdsToScouts$(scoutIds))
     ).subscribe((scoutObservables => {
       if (this.scoutDocs$$) {
         this.scoutDocs$$.unsubscribe();
@@ -123,11 +123,11 @@ export class ScoutService {
 
   private getLoadingScouts() {
     const loadingScouts: Scout[] = [];
-    for (let scoutName of this.loadingScoutNames) {
+    for (const scoutName of this.loadingScoutNames) {
       loadingScouts.push({
         scoutId: undefined,
         name: scoutName,
-        isLoading: true,
+        isLoading: true
       });
     }
     return loadingScouts;

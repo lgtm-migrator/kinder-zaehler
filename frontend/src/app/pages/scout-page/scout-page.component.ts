@@ -1,10 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {Observable, Subscription} from "rxjs";
-import {Child} from "../../models/child.model";
-import {Scout} from "../../models/scout.model";
-import {ChildService} from "../../services/child.service";
-import {ScoutService} from "../../services/scout.service";
+import {ActivatedRoute} from '@angular/router';
+import {Observable, Subscription} from 'rxjs';
+import {Child} from '../../models/child.model';
+import {Scout} from '../../models/scout.model';
+import {ChildService} from '../../services/child.service';
+import {ScoutService} from '../../services/scout.service';
 
 @Component({
   selector: 'app-scout-page',

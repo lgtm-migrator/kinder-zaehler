@@ -3,13 +3,14 @@
     <div class="control">
       <input
         [(ngModel)]="scoutId"
-        name="scoutId"
-        class="input is-rounded padding" type="text" placeholder="scout id">
+        class="input is-rounded padding"
+        aria-label="scout id"
+        name="scoutId" placeholder="scout id" type="text">
     </div>
   </div>
   <button
-    type="submit"
     class="button is-primary is-rounded is-fullwidth"
+    type="submit"
   >join
   </button>
 </form>

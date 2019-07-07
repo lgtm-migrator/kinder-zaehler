@@ -1,5 +1,5 @@
 <ul class="scout-list">
-  <li class="scout level  is-mobile" *ngFor="let scout of scouts$ | async" [routerLink]="['/scout', scout.scoutId]">
+  <li *ngFor="let scout of scouts$ | async" [routerLink]="['/scout', scout.scoutId]" class="scout level  is-mobile">
     <div class="level-left">
       <div class="level-item is-block">
         <p class="scout-name">{{scout.name}}</p>
@@ -13,7 +13,7 @@
 
     <div *ngIf="!scout.isLoading" class="level-right">
       <span class="icon is-medium">
-        <i class="level-item fa fa-lg fa-sign-out" (click)="emitLeaveScout(scout.scoutId)"></i>
+        <i (click)="emitLeaveScout(scout.scoutId)" class="level-item fa fa-lg fa-sign-out"></i>
       </span>
     </div>
   </li>

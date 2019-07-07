@@ -9,16 +9,17 @@
         <div class="field">
           <div class="control">
             <input
-              name="childName"
               [(ngModel)]="name"
-              class="input is-rounded padding" type="text" placeholder="child name">
+              class="input is-rounded padding"
+              aria-label="childName"
+              name="childName" placeholder="child name" type="text">
           </div>
           <p
             *ngIf="childNameEmpty"
             class="help is-danger"
           >The child name field can't be Empty</p>
         </div>
-        <button class="button is-link is-rounded is-fullwidth" type="submit" (click)="onSubmit()">create new</button>
+        <button (click)="onSubmit()" class="button is-link is-rounded is-fullwidth" type="submit">create new</button>
       </form>
     </div>
   </div>

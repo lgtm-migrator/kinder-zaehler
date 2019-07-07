@@ -1,12 +1,12 @@
-import {OverlayModule} from "@angular/cdk/overlay";
+import {OverlayModule} from '@angular/cdk/overlay';
 import {NgModule} from '@angular/core';
-import {AngularFireModule} from "@angular/fire";
-import {AngularFireAuthModule} from "@angular/fire/auth";
-import {AngularFirestoreModule} from "@angular/fire/firestore";
-import {AngularFireFunctionsModule} from "@angular/fire/functions";
-import {FormsModule} from "@angular/forms";
+import {AngularFireModule} from '@angular/fire';
+import {AngularFireAuthModule} from '@angular/fire/auth';
+import {AngularFirestoreModule} from '@angular/fire/firestore';
+import {AngularFireFunctionsModule} from '@angular/fire/functions';
+import {FormsModule} from '@angular/forms';
 import {BrowserModule} from '@angular/platform-browser';
-import {environment} from "../environments/environment";
+import {environment} from '../environments/environment';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -21,7 +21,7 @@ import {ScoutListComponent} from './components/scout-list/scout-list.component';
 import {AuthPageComponent} from './pages/auth-page/auth-page.component';
 import {HomePageComponent} from './pages/home-page/home-page.component';
 import {ScoutPageComponent} from './pages/scout-page/scout-page.component';
-import { ModalComponent } from './components/modal/modal.component';
+import {ModalComponent} from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +37,7 @@ import { ModalComponent } from './components/modal/modal.component';
     ScoutPageComponent,
     CreateChildButtonComponent,
     CreateChildDialogComponent,
-    ModalComponent,
+    ModalComponent
   ],
   imports: [
     OverlayModule,

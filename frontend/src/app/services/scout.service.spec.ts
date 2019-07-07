@@ -1,6 +1,4 @@
-import { TestBed } from '@angular/core/testing';
-
-import { ScoutService } from './scout.service';
+import {ScoutService} from './scout.service';
 
 describe('ScoutService', () => {
   // beforeEach(() => TestBed.configureTestingModule({}));

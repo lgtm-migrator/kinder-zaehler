@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {AuthService} from "../../services/auth.service";
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-register-form',
@@ -9,9 +9,9 @@ import {AuthService} from "../../services/auth.service";
 })
 export class RegisterFormComponent {
   public model: { email: string, password: string, passwordRepeat: string } = {
-    email: "",
-    password: "",
-    passwordRepeat: ""
+    email: '',
+    password: '',
+    passwordRepeat: ''
   };
   public passwordDoNotMatch = false;
 

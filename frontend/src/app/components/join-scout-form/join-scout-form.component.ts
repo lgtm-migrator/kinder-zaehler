@@ -8,7 +8,7 @@ import {ChangeDetectionStrategy, Component, EventEmitter, Output} from '@angular
 })
 export class JoinScoutFormComponent {
   @Output() public joinScout = new EventEmitter<string>();
-  public scoutId: string = '';
+  public scoutId = '';
 
   public onSubmit() {
     this.joinScout.emit(this.scoutId);

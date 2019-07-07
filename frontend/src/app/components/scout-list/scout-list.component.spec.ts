@@ -1,6 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { ScoutListComponent } from './scout-list.component';
+import {ScoutListComponent} from './scout-list.component';
 
 describe('ScoutListComponent', () => {
   // let component: ScoutListComponent;

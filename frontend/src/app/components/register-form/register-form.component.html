@@ -4,9 +4,10 @@
       <input
         [(ngModel)]="model.email"
         class="input is-rounded padding"
-        type="email"
-        placeholder="E-Mail"
         name="email"
+        aria-label="email"
+        placeholder="E-Mail"
+        type="email"
       >
     </div>
   </div>
@@ -15,9 +16,10 @@
       <input
         [(ngModel)]="model.password"
         class="input is-rounded padding"
-        type="password"
-        placeholder="Password"
         name="password"
+        aria-label="password"
+        placeholder="Password"
+        type="password"
       >
     </div>
   </div>
@@ -26,12 +28,13 @@
       <input
         [(ngModel)]="model.passwordRepeat"
         class="input is-rounded padding"
-        type="password"
-        placeholder="Password Repeat"
         name="passwordRepeat"
+        aria-label="Password Repeat"
+        placeholder="Password Repeat"
+        type="password"
       >
     </div>
-    <p class="help is-danger" *ngIf="passwordDoNotMatch">Password and Password Repeat do not match</p>
+    <p *ngIf="passwordDoNotMatch" class="help is-danger">Password and Password Repeat do not match</p>
   </div>
   <div class="buttons">
     <button

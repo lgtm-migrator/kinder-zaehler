@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
-import {Observable} from "rxjs";
-import {map, tap} from "rxjs/operators";
-import {Child} from "../models/child.model";
-import {ScoutService} from "./scout.service";
-import {AngularFireFunctions} from "@angular/fire/functions";
+import {Observable} from 'rxjs';
+import {map, tap} from 'rxjs/operators';
+import {Child} from '../models/child.model';
+import {ScoutService} from './scout.service';
+import {AngularFireFunctions} from '@angular/fire/functions';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +14,7 @@ export class ChildService {
 
   constructor(
     private scoutService: ScoutService,
-    private angularFireFunctions: AngularFireFunctions,
+    private angularFireFunctions: AngularFireFunctions
   ) {
   }
 
@@ -22,7 +22,7 @@ export class ChildService {
     return this.scoutService.getScoutDoc(scoutId).collection<{ name: string }>('children').valueChanges().pipe(
       map((children) => {
         return children.map(({name}) => {
-          return {name, loaded: true}
+          return {name, loaded: true};
         });
       }),
       tap(val => console.log('received children: ', val))

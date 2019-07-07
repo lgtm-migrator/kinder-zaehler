@@ -1,5 +1,5 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {AuthService} from "../../services/auth.service";
+import {AuthService} from '../../services/auth.service';
 
 @Component({
   selector: 'app-login-form',
@@ -8,7 +8,7 @@ import {AuthService} from "../../services/auth.service";
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class LoginFormComponent {
-  public model: { email: string, password: string } = {email: "", password: ""};
+  public model: { email: string, password: string } = {email: '', password: ''};
 
   constructor(private auth: AuthService) {
   }

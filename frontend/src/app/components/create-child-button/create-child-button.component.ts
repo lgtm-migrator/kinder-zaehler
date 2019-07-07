@@ -1,8 +1,8 @@
-import {Overlay, OverlayRef} from "@angular/cdk/overlay";
-import {ComponentPortal, PortalInjector} from "@angular/cdk/portal";
+import {Overlay, OverlayRef} from '@angular/cdk/overlay';
+import {ComponentPortal, PortalInjector} from '@angular/cdk/portal';
 import {Component, EventEmitter, Injector, OnInit, Output} from '@angular/core';
-import {merge} from "rxjs";
-import {CreateChildDialogComponent} from "../create-child-dialog/create-child-dialog.component";
+import {merge} from 'rxjs';
+import {CreateChildDialogComponent} from '../create-child-dialog/create-child-dialog.component';
 
 @Component({
   selector: 'app-create-child-button',
@@ -32,11 +32,11 @@ export class CreateChildButtonComponent implements OnInit {
 
     const subscription$$ = merge(instance.close, instance.create).subscribe((value) => {
       if (value) {
-        this.createChild.emit(value)
+        this.createChild.emit(value);
       }
       overlayRef.detach();
       subscription$$.unsubscribe();
-    })
+    });
   }
 
   public ngOnInit(): void {

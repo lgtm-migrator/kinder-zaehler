@@ -1,6 +1,6 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { GoogleSignInButtonComponent } from './google-sign-in-button.component';
+import {GoogleSignInButtonComponent} from './google-sign-in-button.component';
 
 describe('GoogleSignInButtonComponent', () => {
   let component: GoogleSignInButtonComponent;
@@ -8,9 +8,9 @@ describe('GoogleSignInButtonComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ GoogleSignInButtonComponent ]
+      declarations: [GoogleSignInButtonComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,6 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { JoinScoutFormComponent } from './join-scout-form.component';
+import {JoinScoutFormComponent} from './join-scout-form.component';
 
 describe('JoinScoutFormComponent', () => {
   // let component: JoinScoutFormComponent;

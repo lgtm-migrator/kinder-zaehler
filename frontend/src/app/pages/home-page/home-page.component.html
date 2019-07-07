@@ -5,13 +5,13 @@
 
   <div class="column scout-list">
     <app-scout-list
-      [scouts$]="scouts$"
       (leaveScout)="leaveScout($event)"
+      [scouts$]="scouts$"
     ></app-scout-list>
   </div>
 
   <div class="column">
-    <app-join-scout-form class="box" (joinScout)="joinScout($event)"></app-join-scout-form>
-    <app-create-scout-form class="box" (createScout)="createScout($event)"></app-create-scout-form>
+    <app-join-scout-form (joinScout)="joinScout($event)" class="box"></app-join-scout-form>
+    <app-create-scout-form (createScout)="createScout($event)" class="box"></app-create-scout-form>
   </div>
 </div>

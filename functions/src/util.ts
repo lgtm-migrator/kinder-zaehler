@@ -4,7 +4,7 @@ import {User} from "./model/user.model";
 const firestore = admin.firestore();
 
 export async function getUserData(userId: string): Promise<{ userRef: FirebaseFirestore.DocumentReference, userData: User | undefined }> {
-  const userRef = await firestore.collection('users').doc(userId);
+  const userRef = firestore.collection('users').doc(userId);
   const userSnapshot = await userRef.get();
 
   const userData = <User | undefined>userSnapshot.data();

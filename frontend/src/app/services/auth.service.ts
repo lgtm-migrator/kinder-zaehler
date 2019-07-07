@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-import {AngularFireAuth} from "@angular/fire/auth";
-import {Router} from "@angular/router";
-import * as firebase from 'firebase/app'
-import 'firebase/auth'
+import {AngularFireAuth} from '@angular/fire/auth';
+import {Router} from '@angular/router';
+import * as firebase from 'firebase/app';
+import 'firebase/auth';
 
 @Injectable({
   providedIn: 'root'

@@ -1,6 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { CreateChildButtonComponent } from './create-child-button.component';
+import {CreateChildButtonComponent} from './create-child-button.component';
 
 describe('CreateChildButtonComponent', () => {
   // let component: CreateChildButtonComponent;

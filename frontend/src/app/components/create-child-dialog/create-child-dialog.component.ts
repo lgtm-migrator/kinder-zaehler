@@ -1,6 +1,5 @@
-import {OverlayRef} from "@angular/cdk/overlay";
 import {ChangeDetectionStrategy, Component} from '@angular/core';
-import {Subject} from "rxjs";
+import {Subject} from 'rxjs';
 
 @Component({
   selector: 'app-create-child-dialog',
@@ -12,10 +11,10 @@ export class CreateChildDialogComponent {
   public close = new Subject<void>();
   public create = new Subject<{ name: string }>();
 
-  public name: string = '';
-  public childNameEmpty: boolean = false;
+  public name = '';
+  public childNameEmpty = false;
 
-  constructor(private overlayRef: OverlayRef) {
+  constructor() {
   }
 
   public onSubmit() {
