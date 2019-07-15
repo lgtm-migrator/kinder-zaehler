@@ -17,6 +17,10 @@
 
   <div class="column">
     <app-create-child-button (createChild)="createChild($event)" class="box"></app-create-child-button>
+    <div class="box">
+      <!--suppress HtmlFormInputWithoutLabel -->
+      <input #dateInput type="date" (createChild)="createChild($event)"/>
+    </div>
   </div>
 </div>
 
