@@ -15,12 +15,12 @@
     <p *ngFor="let child of children$ | async">{{child.name}}</p>
   </div>
 
-  <div class="column">
-    <app-create-child-button (createChild)="createChild($event)" class="box"></app-create-child-button>
-    <div class="box">
+  <div class="column box actions">
+      <app-create-child-button (createChild)="createChild($event)"></app-create-child-button>
+      <app-attendance-check-button [scoutId]="scoutId"></app-attendance-check-button>
+
       <!--suppress HtmlFormInputWithoutLabel -->
       <input #dateInput type="date" (createChild)="createChild($event)"/>
-    </div>
   </div>
 </div>
 

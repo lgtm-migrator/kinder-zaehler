@@ -6,9 +6,11 @@ import {AuthGuard} from './guards/auth.guard';
 import {AuthPageComponent} from './pages/auth-page/auth-page.component';
 import {HomePageComponent} from './pages/home-page/home-page.component';
 import {ScoutPageComponent} from './pages/scout-page/scout-page.component';
+import {AttendanceCheckPageComponent} from './pages/attendance-check-page/attendance-check-page.component';
 
 const routes: Routes = [
   {component: HomePageComponent, path: '', pathMatch: 'full', canActivate: [AuthGuard]},
+  {component: AttendanceCheckPageComponent, path: 'scout/attendance/:scoutId', canActivate: [AuthGuard]},
   {component: ScoutPageComponent, path: 'scout/:scoutId', canActivate: [AuthGuard]},
   {path: 'scout', redirectTo: '/'},
   {

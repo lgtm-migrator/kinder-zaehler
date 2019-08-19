@@ -22,6 +22,8 @@ import {AuthPageComponent} from './pages/auth-page/auth-page.component';
 import {HomePageComponent} from './pages/home-page/home-page.component';
 import {ScoutPageComponent} from './pages/scout-page/scout-page.component';
 import {ModalComponent} from './components/modal/modal.component';
+import { AttendanceCheckButtonComponent } from './components/attendance-check-button/attendance-check-button.component';
+import { AttendanceCheckPageComponent } from './pages/attendance-check-page/attendance-check-page.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,9 @@ import {ModalComponent} from './components/modal/modal.component';
     ScoutPageComponent,
     CreateChildButtonComponent,
     CreateChildDialogComponent,
-    ModalComponent
+    ModalComponent,
+    AttendanceCheckButtonComponent,
+    AttendanceCheckPageComponent
   ],
   imports: [
     OverlayModule,
