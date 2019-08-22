@@ -16,10 +16,10 @@ export class ScoutPageComponent implements OnInit, AfterViewInit, OnDestroy {
   public children$: Observable<Child[]>;
   public scout$: Observable<Scout>;
   public calendar: bulmaCalendar;
-  private scoutId: string = undefined;
-  private params$$: Subscription;
 
   @ViewChild('dateInput', {static: false}) dateInput: ElementRef<HTMLInputElement>;
+  private scoutId: string = undefined;
+  private params$$: Subscription = Subscription.EMPTY;
 
   constructor(
     private route: ActivatedRoute,
