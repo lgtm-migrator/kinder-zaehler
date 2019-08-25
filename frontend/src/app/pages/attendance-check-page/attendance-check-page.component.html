@@ -1,5 +1,12 @@
-<div *ngIf="children !== null">
-  <p>1/{{children.length}}</p>
-</div>
-<button (click)="asdfasdf(children)"></button>
-f
+<ng-container *ngIf="status$ | async as status">
+  {{ status.checked }}/ {{status.all}}
+</ng-container>
+<ng-container *ngIf="child$ | async as child; else loading">
+  {{ child.name }}
+
+  <button (click)="isPresent(child)">isPresent</button>
+
+</ng-container>
+<ng-template #loading>
+  Loading...
+</ng-template>

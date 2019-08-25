@@ -1,4 +1,4 @@
 export interface Child {
-  name: string,
-  loaded: boolean
+  name: string;
+  loaded: boolean;
 }

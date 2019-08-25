@@ -1,9 +1,9 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
-import {Child} from '../models/child.model';
 import {ScoutService} from './scout.service';
 import {AngularFireFunctions} from '@angular/fire/functions';
+import {LoadedChild} from '../models/loaded-child.model';
 
 @Injectable({
   providedIn: 'root'
@@ -18,11 +18,11 @@ export class ChildService {
   ) {
   }
 
-  public getChildren$(scoutId: string): Observable<Child[]> {
-    return this.scoutService.getScoutDoc(scoutId).collection<{ name: string }>('children').valueChanges().pipe(
+  public getChildren$(scoutId: string): Observable<LoadedChild[]> {
+    return this.scoutService.getScoutDoc(scoutId).collection<{ name: string, id: string }>('children').valueChanges({idField: 'id'}).pipe(
       map((children) => {
-        return children.map(({name}) => {
-          return {name, loaded: true};
+        return children.map(({name, id}) => {
+          return <LoadedChild>{name, id, loaded: true};
         });
       }),
       tap(val => console.log('received children: ', val))
