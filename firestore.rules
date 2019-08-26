@@ -5,6 +5,9 @@ service cloud.firestore {
       allow read: if isSignedIn() && scout in get(/databases/$(database)/documents/users/$(request.auth.uid)).data.scouts;
       match /children/{child} {
             allow read: if isSignedIn() && scout in get(/databases/$(database)/documents/users/$(request.auth.uid)).data.scouts;
+            match /presence/{date} {
+              allow read, write: if isSignedIn() && scout in get(/databases/$(database)/documents/users/$(request.auth.uid)).data.scouts;
+            }
       }
   	}
 

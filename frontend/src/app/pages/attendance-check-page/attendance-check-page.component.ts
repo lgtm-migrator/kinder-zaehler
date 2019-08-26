@@ -44,6 +44,7 @@ export class AttendanceCheckPageComponent implements OnInit, OnDestroy {
   }
 
   isPresent(child: LoadedChild) {
+    this.childService.setAttendance(this.scoutId, child, 'present');
     console.log();
   }
 

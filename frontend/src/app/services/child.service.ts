@@ -33,4 +33,10 @@ export class ChildService {
     console.log('create child');
     return this._createChild({name, scoutId}).toPromise();
   }
+
+  public setAttendance(scoutId: string, child: LoadedChild, attendance: string) {
+    this.scoutService.getScoutDoc(scoutId).collection('children').doc(child.id).collection('presence').doc('27-03-2000').set({
+      attendance
+    });
+  }
 }
