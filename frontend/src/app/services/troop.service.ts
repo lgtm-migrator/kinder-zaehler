@@ -37,7 +37,7 @@ export class TroopService {
         tap(val => console.log('received troopIds: ', val))
       );
 
-    this.troops$ = combineLatest(this.troopDocs$, this.reloadTroops$).pipe(
+    this.troops$ = combineLatest([this.troopDocs$, this.reloadTroops$]).pipe(
       map(([troops]: [Troop[], void]) => {
         troops.forEach(troop => {
           if (this.loadingTroopNames.has(troop.name)) {
