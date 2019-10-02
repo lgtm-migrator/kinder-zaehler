@@ -17,12 +17,12 @@ export async function getUserData(userId: string): Promise<{ userRef: FirebaseFi
   return {userRef: userRef, userData: userData}
 }
 
-export async function hasUserAccessToScout(userId: string, scoutId: string): Promise<boolean> {
+export async function hasUserAccessToTroop(userId: string, troopId: string): Promise<boolean> {
   const {userData} = await getUserData(userId);
 
   if (userData === undefined) {
     return false;
   }
 
-  return userData.scouts.includes(scoutId);
+  return userData.troops.includes(troopId);
 }

@@ -1,17 +1,17 @@
 <div class="columns">
   <div class="column">
-    <h1 class="title has-text-primary">Scouts</h1>
+    <h1 class="title has-text-primary">Troops</h1>
   </div>
 
-  <div class="column scout-list">
-    <app-scout-list
-      (leaveScout)="leaveScout($event)"
-      [scouts$]="scouts$"
-    ></app-scout-list>
+  <div class="column troop-list">
+    <app-troop-list
+      (leaveTroop)="leaveTroop($event)"
+      [troops$]="troops$"
+    ></app-troop-list>
   </div>
 
   <div class="column">
-    <app-join-scout-form (joinScout)="joinScout($event)" class="box"></app-join-scout-form>
-    <app-create-scout-form (createScout)="createScout($event)" class="box"></app-create-scout-form>
+    <app-join-troop-form (joinTroop)="joinTroop($event)" class="box"></app-join-troop-form>
+    <app-create-troop-form (createTroop)="createTroop($event)" class="box"></app-create-troop-form>
   </div>
 </div>

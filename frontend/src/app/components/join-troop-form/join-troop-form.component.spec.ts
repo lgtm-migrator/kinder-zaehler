@@ -1,18 +1,18 @@
-import {ScoutListComponent} from './scout-list.component';
+import {JoinTroopFormComponent} from './join-troop-form.component';
 
-describe('ScoutListComponent', () => {
-  // let component: ScoutListComponent;
-  // let fixture: ComponentFixture<ScoutListComponent>;
+describe('JoinTroopFormComponent', () => {
+  // let component: JoinTroopFormComponent;
+  // let fixture: ComponentFixture<JoinTroopFormComponent>;
   //
   // beforeEach(async(() => {
   //   TestBed.configureTestingModule({
-  //     declarations: [ ScoutListComponent ]
+  //     declarations: [ JoinTroopFormComponent ]
   //   })
   //   .compileComponents();
   // }));
   //
   // beforeEach(() => {
-  //   fixture = TestBed.createComponent(ScoutListComponent);
+  //   fixture = TestBed.createComponent(JoinTroopFormComponent);
   //   component = fixture.componentInstance;
   //   fixture.detectChanges();
   // });

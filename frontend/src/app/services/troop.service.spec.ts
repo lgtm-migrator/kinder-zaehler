@@ -1,10 +1,10 @@
-import {ScoutService} from './scout.service';
+import {TroopService} from './troop.service';
 
-describe('ScoutService', () => {
+describe('TroopService', () => {
   // beforeEach(() => TestBed.configureTestingModule({}));
   //
   // it('should be created', () => {
-  //   const service: ScoutService = TestBed.get(ScoutService);
+  //   const service: TroopService = TestBed.get(TroopService);
   //   expect(service).toBeTruthy();
   // });
 });

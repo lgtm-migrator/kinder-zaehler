@@ -1,18 +1,18 @@
-import {ScoutPageComponent} from './scout-page.component';
+import {TroopListComponent} from './troop-list.component';
 
-describe('ScoutPageComponent', () => {
-  // let component: ScoutPageComponent;
-  // let fixture: ComponentFixture<ScoutPageComponent>;
+describe('TroopListComponent', () => {
+  // let component: TroopListComponent;
+  // let fixture: ComponentFixture<TroopListComponent>;
   //
   // beforeEach(async(() => {
   //   TestBed.configureTestingModule({
-  //     declarations: [ ScoutPageComponent ]
+  //     declarations: [ TroopListComponent ]
   //   })
   //   .compileComponents();
   // }));
   //
   // beforeEach(() => {
-  //   fixture = TestBed.createComponent(ScoutPageComponent);
+  //   fixture = TestBed.createComponent(TroopListComponent);
   //   component = fixture.componentInstance;
   //   fixture.detectChanges();
   // });

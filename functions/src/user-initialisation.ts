@@ -7,6 +7,6 @@ export const createInitialUserData = functions.auth.user().onCreate(async (event
   const userRef = firestore.collection('users').doc(event.uid);
 
   await userRef.set({
-    scouts: []
+    troops: []
   });
 });

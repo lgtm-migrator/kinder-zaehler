@@ -2,36 +2,36 @@ import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from
 import {ActivatedRoute} from '@angular/router';
 import {Observable, Subscription} from 'rxjs';
 import {Child} from '../../models/child.model';
-import {Scout} from '../../models/scout.model';
+import {Troop} from '../../models/troop.model';
 import {ChildService} from '../../services/child.service';
-import {ScoutService} from '../../services/scout.service';
+import {TroopService} from '../../services/troop.service';
 import bulmaCalendar from 'bulma-calendar/dist/js/bulma-calendar';
 
 @Component({
-  selector: 'app-scout-page',
-  templateUrl: './scout-page.component.html',
-  styleUrls: ['./scout-page.component.scss']
+  selector: 'app-troop-page',
+  templateUrl: './troop-page.component.html',
+  styleUrls: ['./troop-page.component.scss']
 })
-export class ScoutPageComponent implements OnInit, AfterViewInit, OnDestroy {
+export class TroopPageComponent implements OnInit, AfterViewInit, OnDestroy {
   public children$: Observable<Child[]>;
-  public scout$: Observable<Scout>;
+  public troop$: Observable<Troop>;
   public calendar: bulmaCalendar;
 
   @ViewChild('dateInput', {static: false}) dateInput: ElementRef<HTMLInputElement>;
-  private scoutId: string = undefined;
+  private troopId: string = undefined;
   private params$$: Subscription = Subscription.EMPTY;
 
   constructor(
     private route: ActivatedRoute,
     private childService: ChildService,
-    private scoutService: ScoutService) {
+    private troopService: TroopService) {
   }
 
   public ngOnInit() {
     this.params$$ = this.route.params.subscribe(params => {
-      this.scoutId = params['scoutId'];
-      this.scout$ = this.scoutService.getScout$(this.scoutId);
-      this.children$ = this.childService.getChildren$(this.scoutId);
+      this.troopId = params['troopId'];
+      this.troop$ = this.troopService.getTroop$(this.troopId);
+      this.children$ = this.childService.getChildren$(this.troopId);
     });
   }
 
@@ -40,7 +40,7 @@ export class ScoutPageComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   createChild(child: { name: string }) {
-    this.childService.createChild(child, this.scoutId);
+    this.childService.createChild(child, this.troopId);
   }
 
   ngAfterViewInit(): void {

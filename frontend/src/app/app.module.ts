@@ -12,15 +12,15 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {CreateChildDialogComponent} from './components/create-child-dialog/create-child-dialog.component';
 import {CreateChildButtonComponent} from './components/create-child-button/create-child-button.component';
-import {CreateScoutFormComponent} from './components/create-scout-form/create-scout-form.component';
+import {CreateTroopFormComponent} from './components/create-troop-form/create-troop-form.component';
 import {GoogleSignInButtonComponent} from './components/google-sign-in-button/google-sign-in-button.component';
-import {JoinScoutFormComponent} from './components/join-scout-form/join-scout-form.component';
+import {JoinTroopFormComponent} from './components/join-troop-form/join-troop-form.component';
 import {LoginFormComponent} from './components/login-form/login-form.component';
 import {RegisterFormComponent} from './components/register-form/register-form.component';
-import {ScoutListComponent} from './components/scout-list/scout-list.component';
+import {TroopListComponent} from './components/troop-list/troop-list.component';
 import {AuthPageComponent} from './pages/auth-page/auth-page.component';
 import {HomePageComponent} from './pages/home-page/home-page.component';
-import {ScoutPageComponent} from './pages/scout-page/scout-page.component';
+import {TroopPageComponent} from './pages/troop-page/troop-page.component';
 import {ModalComponent} from './components/modal/modal.component';
 import { AttendanceCheckButtonComponent } from './components/attendance-check-button/attendance-check-button.component';
 import { AttendanceCheckPageComponent } from './pages/attendance-check-page/attendance-check-page.component';
@@ -33,10 +33,10 @@ import { AttendanceCheckPageComponent } from './pages/attendance-check-page/atte
     AuthPageComponent,
     RegisterFormComponent,
     LoginFormComponent,
-    JoinScoutFormComponent,
-    CreateScoutFormComponent,
-    ScoutListComponent,
-    ScoutPageComponent,
+    JoinTroopFormComponent,
+    CreateTroopFormComponent,
+    TroopListComponent,
+    TroopPageComponent,
     CreateChildButtonComponent,
     CreateChildDialogComponent,
     ModalComponent,

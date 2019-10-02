@@ -15,7 +15,7 @@ export class AttendanceCheckPageComponent implements OnInit, OnDestroy {
   public status$: Subject<{ checked: number, all: number }> = new Subject();
 
   private children: LoadedChild[] | null = null;
-  private scoutId: string = undefined;
+  private troopId: string = undefined;
   private checkedIds: Set<string> = new Set();
 
   private children$$: Subscription = Subscription.EMPTY;
@@ -26,8 +26,8 @@ export class AttendanceCheckPageComponent implements OnInit, OnDestroy {
 
   public ngOnInit() {
     this.params$$ = this.route.params.subscribe(params => {
-      this.scoutId = params['scoutId'];
-      this.children$$ = this.childService.getChildren$(this.scoutId)
+      this.troopId = params['troopId'];
+      this.children$$ = this.childService.getChildren$(this.troopId)
         .pipe(
           first()
         ).subscribe(children => {
@@ -44,7 +44,7 @@ export class AttendanceCheckPageComponent implements OnInit, OnDestroy {
   }
 
   isPresent(child: LoadedChild) {
-    this.childService.setAttendance(this.scoutId, child, 'present');
+    this.childService.setAttendance(this.troopId, child, 'present');
     console.log();
   }
 

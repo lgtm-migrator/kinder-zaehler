@@ -1,10 +1,10 @@
 import * as admin from 'firebase-admin';
 import * as functions from 'firebase-functions';
-import {hasUserAccessToScout} from "./util";
+import {hasUserAccessToTroop} from "./util";
 
 const firestore = admin.firestore();
 
-export const createChild = functions.https.onCall(async (data: { name?: any, scoutId?: any }, context) => {
+export const createChild = functions.https.onCall(async (data: { name?: any, troopId?: any }, context) => {
   if (context.auth === undefined) {
     return;
   }
@@ -13,18 +13,18 @@ export const createChild = functions.https.onCall(async (data: { name?: any, sco
     return;
   }
 
-  if (!data.scoutId || typeof data.scoutId !== 'string') {
+  if (!data.troopId || typeof data.troopId !== 'string') {
     return;
   }
 
-  const {name, scoutId} = data;
+  const {name, troopId} = data;
 
 
-  if (!await hasUserAccessToScout(context.auth.uid, scoutId)) {
+  if (!await hasUserAccessToTroop(context.auth.uid, troopId)) {
     return;
   }
 
-  await firestore.collection('scouts').doc(scoutId).collection('children').add({
+  await firestore.collection('troops').doc(troopId).collection('children').add({
     name
   });
 });

@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {map, tap} from 'rxjs/operators';
-import {ScoutService} from './scout.service';
+import {TroopService} from './troop.service';
 import {AngularFireFunctions} from '@angular/fire/functions';
 import {LoadedChild} from '../models/loaded-child.model';
 
@@ -13,13 +13,13 @@ export class ChildService {
   private _createChild = this.angularFireFunctions.httpsCallable('createChild');
 
   constructor(
-    private scoutService: ScoutService,
+    private troopService: TroopService,
     private angularFireFunctions: AngularFireFunctions
   ) {
   }
 
-  public getChildren$(scoutId: string): Observable<LoadedChild[]> {
-    return this.scoutService.getScoutDoc(scoutId).collection<{ name: string, id: string }>('children').valueChanges({idField: 'id'}).pipe(
+  public getChildren$(troopId: string): Observable<LoadedChild[]> {
+    return this.troopService.getTroopDoc(troopId).collection<{ name: string, id: string }>('children').valueChanges({idField: 'id'}).pipe(
       map((children) => {
         return children.map(({name, id}) => {
           return <LoadedChild>{name, id, loaded: true};
@@ -29,13 +29,13 @@ export class ChildService {
     );
   }
 
-  public createChild(child: { name: string }, scoutId: string) {
+  public createChild(child: { name: string }, troopId: string) {
     console.log('create child');
-    return this._createChild({name, scoutId}).toPromise();
+    return this._createChild({name, troopId}).toPromise();
   }
 
-  public setAttendance(scoutId: string, child: LoadedChild, attendance: string) {
-    this.scoutService.getScoutDoc(scoutId).collection('children').doc(child.id).collection('presence').doc('27-03-2000').set({
+  public setAttendance(troopId: string, child: LoadedChild, attendance: string) {
+    this.troopService.getTroopDoc(troopId).collection('children').doc(child.id).collection('presence').doc('27-03-2000').set({
       attendance
     });
   }

@@ -1,12 +1,12 @@
 service cloud.firestore {
   match /databases/{database}/documents {
 
-    match /scouts/{scout} {
-      allow read: if isSignedIn() && scout in get(/databases/$(database)/documents/users/$(request.auth.uid)).data.scouts;
+    match /troops/{troop} {
+      allow read: if isSignedIn() && troop in get(/databases/$(database)/documents/users/$(request.auth.uid)).data.troops;
       match /children/{child} {
-            allow read: if isSignedIn() && scout in get(/databases/$(database)/documents/users/$(request.auth.uid)).data.scouts;
+            allow read: if isSignedIn() && troop in get(/databases/$(database)/documents/users/$(request.auth.uid)).data.troops;
             match /presence/{date} {
-              allow read, write: if isSignedIn() && scout in get(/databases/$(database)/documents/users/$(request.auth.uid)).data.scouts;
+              allow read, write: if isSignedIn() && troop in get(/databases/$(database)/documents/users/$(request.auth.uid)).data.troops;
             }
       }
   	}

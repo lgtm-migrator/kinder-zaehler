@@ -1,16 +1,16 @@
 @import "~bulma/sass/utilities/initial-variables";
 
-.scout-list {
-  .scout-name {
+.troop-list {
+  .troop-name {
     font-weight: bold;
     margin-bottom: 2px;
   }
 
-  .scout-id {
+  .troop-id {
     color: $blue;
   }
 
-  .scout-loading-indicator {
+  .troop-loading-indicator {
     $grey-lighter: $blue;
     @import "~bulma/sass/utilities/mixins";
     @include loader();

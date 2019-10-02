@@ -15,6 +15,6 @@ export class UserService {
   public getUserDoc() {
     return this.angularFirestore
       .collection(`users`)
-      .doc<{ scouts: string[] }>(this.authService.userId);
+      .doc<{ troops: string[] }>(this.authService.userId);
   }
 }

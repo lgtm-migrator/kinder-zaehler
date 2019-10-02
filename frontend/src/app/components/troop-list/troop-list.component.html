@@ -1,0 +1,20 @@
+<ul class="troop-list">
+  <li *ngFor="let troop of troops$ | async" [routerLink]="['/troop', troop.troopId]" class="troop level  is-mobile">
+    <div class="level-left">
+      <div class="level-item is-block">
+        <p class="troop-name">{{troop.name}}</p>
+        <div>
+          troop-id:
+          <span *ngIf="!troop.isLoading" class="troop-id">{{troop.troopId}}</span>
+          <span *ngIf="troop.isLoading" class="troop-loading-indicator is-inline-block"></span>
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="!troop.isLoading" class="level-right">
+      <span class="icon is-medium">
+        <i (click)="emitLeaveTroop(troop.troopId)" class="level-item fa fa-lg fa-sign-out"></i>
+      </span>
+    </div>
+  </li>
+</ul>

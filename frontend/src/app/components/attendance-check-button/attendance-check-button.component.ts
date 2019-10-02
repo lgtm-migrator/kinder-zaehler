@@ -7,7 +7,7 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class AttendanceCheckButtonComponent implements OnInit {
 
-  @Input() public scoutId: string;
+  @Input() public troopId: string;
 
   constructor() {
   }

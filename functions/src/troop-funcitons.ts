@@ -4,7 +4,7 @@ import {getUserData} from "./util";
 
 const firestore = admin.firestore();
 
-export const createScout = functions.https.onCall(async (data, context) => {
+export const createTroop = functions.https.onCall(async (data, context) => {
   if (context.auth === undefined) {
     return;
   }
@@ -13,10 +13,10 @@ export const createScout = functions.https.onCall(async (data, context) => {
     return;
   }
 
-  const scoutRef = await firestore.collection('scouts').add({
+  const troopRef = await firestore.collection('troops').add({
     name: data.name
   });
-  const scoutId = scoutRef.id;
+  const troopId = troopRef.id;
 
   const {userRef, userData} = await getUserData(context.auth.uid);
 
@@ -24,26 +24,26 @@ export const createScout = functions.https.onCall(async (data, context) => {
     return;
   }
 
-  userData.scouts.push(scoutId);
+  userData.troops.push(troopId);
 
   await userRef.set(userData);
 
   return;
 });
 
-export const joinScout = functions.https.onCall(async (data, context) => {
+export const joinTroop = functions.https.onCall(async (data, context) => {
   if (context.auth === undefined) {
     return;
   }
 
-  if (data.scoutId === undefined || typeof data.scoutId !== 'string') {
+  if (data.troopId === undefined || typeof data.troopId !== 'string') {
     return;
   }
 
-  const scoutId = data.scoutId;
+  const troopId = data.troopId;
 
-  const scoutRef = await firestore.collection('scouts').doc(scoutId).get();
-  if (!scoutRef.exists) {
+  const troopRef = await firestore.collection('troops').doc(troopId).get();
+  if (!troopRef.exists) {
     return;
   }
 
@@ -53,32 +53,32 @@ export const joinScout = functions.https.onCall(async (data, context) => {
     return;
   }
 
-  if (userData.scouts.includes(scoutId)) {
-    return; // user already has scoutId
+  if (userData.troops.includes(troopId)) {
+    return; // user already has troopId
   }
 
-  userData.scouts.push(scoutId);
+  userData.troops.push(troopId);
   await userRef.set(userData);
   return;
 });
 
-export const leaveScout = functions.https.onCall(async (data, context) => {
+export const leaveTroop = functions.https.onCall(async (data, context) => {
   if (context.auth === undefined) {
     return;
   }
 
-  if (data.scoutId === undefined || typeof data.scoutId !== 'string') {
+  if (data.troopId === undefined || typeof data.troopId !== 'string') {
     return;
   }
 
-  const scoutId = data.scoutId;
+  const troopId = data.troopId;
   const {userRef, userData} = await getUserData(context.auth.uid);
 
   if (userData === undefined) {
     return;
   }
 
-  userData.scouts = userData.scouts.filter((s: string) => s !== scoutId);
+  userData.troops = userData.troops.filter((s: string) => s !== troopId);
   await userRef.set(userData);
   return;
 });

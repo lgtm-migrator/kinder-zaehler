@@ -1,7 +1,7 @@
 import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {Observable} from 'rxjs';
-import {Scout} from '../../models/scout.model';
-import {ScoutService} from '../../services/scout.service';
+import {Troop} from '../../models/troop.model';
+import {TroopService} from '../../services/troop.service';
 
 @Component({
   selector: 'app-home-page',
@@ -10,21 +10,21 @@ import {ScoutService} from '../../services/scout.service';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomePageComponent {
-  public scouts$: Observable<Scout[]>;
+  public troops$: Observable<Troop[]>;
 
-  constructor(public scoutService: ScoutService) {
-    this.scouts$ = this.scoutService.scouts$;
+  constructor(public troopService: TroopService) {
+    this.troops$ = this.troopService.troops$;
   }
 
-  public joinScout(scoutId: string) {
-    this.scoutService.joinScout(scoutId);
+  public joinTroop(troopId: string) {
+    this.troopService.joinTroop(troopId);
   }
 
-  public async createScout(scoutName: string) {
-    await this.scoutService.createScout(scoutName);
+  public async createTroop(troopName: string) {
+    await this.troopService.createTroop(troopName);
   }
 
-  public async leaveScout(scoutId: string) {
-    await this.scoutService.leaveScout(scoutId);
+  public async leaveTroop(troopId: string) {
+    await this.troopService.leaveTroop(troopId);
   }
 }
