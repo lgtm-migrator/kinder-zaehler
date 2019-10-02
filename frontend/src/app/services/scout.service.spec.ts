@@ -1,10 +1,10 @@
-import {ChildService} from './child.service';
+import {ScoutService} from './scout.service';
 
-describe('ChildService', () => {
+describe('ScoutService', () => {
   // beforeEach(() => TestBed.configureTestingModule({}));
   //
   // it('should be created', () => {
-  //   const service: ChildService = TestBed.get(ChildService);
+  //   const service: ScoutService = TestBed.get(ScoutService);
   //   expect(service).toBeTruthy();
   // });
 });

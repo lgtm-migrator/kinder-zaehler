@@ -4,7 +4,7 @@ import {hasUserAccessToTroop} from "./util";
 
 const firestore = admin.firestore();
 
-export const createChild = functions.https.onCall(async (data: { name?: any, troopId?: any }, context) => {
+export const createScout = functions.https.onCall(async (data: { name?: any, troopId?: any }, context) => {
   if (context.auth === undefined) {
     return;
   }
@@ -24,7 +24,7 @@ export const createChild = functions.https.onCall(async (data: { name?: any, tro
     return;
   }
 
-  await firestore.collection('troops').doc(troopId).collection('children').add({
+  await firestore.collection('troops').doc(troopId).collection('scouts').add({
     name
   });
 });

@@ -2,28 +2,28 @@ import {Overlay, OverlayRef} from '@angular/cdk/overlay';
 import {ComponentPortal, PortalInjector} from '@angular/cdk/portal';
 import {Component, EventEmitter, Injector, OnInit, Output} from '@angular/core';
 import {merge} from 'rxjs';
-import {CreateChildDialogComponent} from '../create-child-dialog/create-child-dialog.component';
+import {CreateScoutDialogComponent} from '../create-scout-dialog/create-scout-dialog.component';
 
 @Component({
-  selector: 'app-create-child-button',
-  templateUrl: './create-child-button.component.html',
-  styleUrls: ['./create-child-button.component.scss']
+  selector: 'app-create-scout-button',
+  templateUrl: './create-scout-button.component.html',
+  styleUrls: ['./create-scout-button.component.scss']
 })
-export class CreateChildButtonComponent implements OnInit {
-  @Output() public createChild = new EventEmitter<{ name: string }>();
+export class CreateScoutButtonComponent implements OnInit {
+  @Output() public createScout = new EventEmitter<{ name: string }>();
 
 
   constructor(private overlay: Overlay, private injector: Injector) {
 
   }
 
-  public openCreateChildDialog(): void {
+  public openCreateScoutDialog(): void {
     const overlayRef = this.overlay.create();
 
     const injectionTokens = new WeakMap();
     injectionTokens.set(OverlayRef, overlayRef);
 
-    const userProfilePortal = new ComponentPortal(CreateChildDialogComponent);
+    const userProfilePortal = new ComponentPortal(CreateScoutDialogComponent);
     userProfilePortal.injector = new PortalInjector(this.injector, injectionTokens);
 
     const componentRef = overlayRef.attach(userProfilePortal);
@@ -32,7 +32,7 @@ export class CreateChildButtonComponent implements OnInit {
 
     const subscription$$ = merge(instance.close, instance.create).subscribe((value) => {
       if (value) {
-        this.createChild.emit(value);
+        this.createScout.emit(value);
       }
       overlayRef.detach();
       subscription$$.unsubscribe();

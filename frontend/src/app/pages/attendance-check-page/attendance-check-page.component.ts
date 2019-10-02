@@ -1,9 +1,9 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {ChildService} from '../../services/child.service';
+import {ScoutService} from '../../services/scout.service';
 import {Subject, Subscription} from 'rxjs';
 import {first} from 'rxjs/operators';
-import {LoadedChild} from '../../models/loaded-child.model';
+import {LoadedScout} from '../../models/loaded-scout.model';
 
 @Component({
   selector: 'app-attendance-check-page',
@@ -11,53 +11,53 @@ import {LoadedChild} from '../../models/loaded-child.model';
   styleUrls: ['./attendance-check-page.component.scss']
 })
 export class AttendanceCheckPageComponent implements OnInit, OnDestroy {
-  public child$: Subject<LoadedChild> = new Subject();
+  public scout$: Subject<LoadedScout> = new Subject();
   public status$: Subject<{ checked: number, all: number }> = new Subject();
 
-  private children: LoadedChild[] | null = null;
+  private scouts: LoadedScout[] | null = null;
   private troopId: string = undefined;
   private checkedIds: Set<string> = new Set();
 
-  private children$$: Subscription = Subscription.EMPTY;
+  private scouts$$: Subscription = Subscription.EMPTY;
   private params$$: Subscription = Subscription.EMPTY;
 
-  constructor(private route: ActivatedRoute, private childService: ChildService) {
+  constructor(private route: ActivatedRoute, private scoutService: ScoutService) {
   }
 
   public ngOnInit() {
     this.params$$ = this.route.params.subscribe(params => {
       this.troopId = params['troopId'];
-      this.children$$ = this.childService.getChildren$(this.troopId)
+      this.scouts$$ = this.scoutService.getScouts$(this.troopId)
         .pipe(
           first()
-        ).subscribe(children => {
-          this.children = children;
+        ).subscribe(scouts => {
+          this.scouts = scouts;
           // TODO: check if array is empty
-          this.handleNextChild();
+          this.handleNextScout();
         });
     });
   }
 
   public ngOnDestroy(): void {
-    this.children$$.unsubscribe();
+    this.scouts$$.unsubscribe();
     this.params$$.unsubscribe();
   }
 
-  isPresent(child: LoadedChild) {
-    this.childService.setAttendance(this.troopId, child, 'present');
+  isPresent(scout: LoadedScout) {
+    this.scoutService.setAttendance(this.troopId, scout, 'present');
     console.log();
   }
 
-  private handleNextChild() {
-    const child = this.children
+  private handleNextScout() {
+    const scout = this.scouts
       .find(value => !this.checkedIds.has(value.id));
 
-    if (child === undefined) {
+    if (scout === undefined) {
       // TODO: handle finish
     } else {
-      this.checkedIds.add(child.id);
-      this.child$.next(child);
-      this.status$.next({all: this.children.length, checked: this.checkedIds.size});
+      this.checkedIds.add(scout.id);
+      this.scout$.next(scout);
+      this.status$.next({all: this.scouts.length, checked: this.checkedIds.size});
     }
   }
 }

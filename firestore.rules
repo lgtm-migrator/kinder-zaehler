@@ -3,7 +3,7 @@ service cloud.firestore {
 
     match /troops/{troop} {
       allow read: if isSignedIn() && troop in get(/databases/$(database)/documents/users/$(request.auth.uid)).data.troops;
-      match /children/{child} {
+      match /scouts/{scout} {
             allow read: if isSignedIn() && troop in get(/databases/$(database)/documents/users/$(request.auth.uid)).data.troops;
             match /presence/{date} {
               allow read, write: if isSignedIn() && troop in get(/databases/$(database)/documents/users/$(request.auth.uid)).data.troops;

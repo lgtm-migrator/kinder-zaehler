@@ -2,17 +2,17 @@ import {ChangeDetectionStrategy, Component} from '@angular/core';
 import {Subject} from 'rxjs';
 
 @Component({
-  selector: 'app-create-child-dialog',
-  templateUrl: './create-child-dialog.component.html',
-  styleUrls: ['./create-child-dialog.component.scss'],
+  selector: 'app-create-scout-dialog',
+  templateUrl: './create-scout-dialog.component.html',
+  styleUrls: ['./create-scout-dialog.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CreateChildDialogComponent {
+export class CreateScoutDialogComponent {
   public close = new Subject<void>();
   public create = new Subject<{ name: string }>();
 
   public name = '';
-  public childNameEmpty = false;
+  public scoutNameEmpty = false;
 
   constructor() {
   }
@@ -20,10 +20,10 @@ export class CreateChildDialogComponent {
   public onSubmit() {
     this.name = this.name.trim();
     if (this.name.length < 1) {
-      this.childNameEmpty = true;
+      this.scoutNameEmpty = true;
       return;
     }
     this.create.next({name: this.name});
-    this.childNameEmpty = false;
+    this.scoutNameEmpty = false;
   }
 }

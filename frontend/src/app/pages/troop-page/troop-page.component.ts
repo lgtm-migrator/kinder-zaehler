@@ -1,9 +1,9 @@
 import {AfterViewInit, Component, ElementRef, OnDestroy, OnInit, ViewChild} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Observable, Subscription} from 'rxjs';
-import {Child} from '../../models/child.model';
+import {Scout} from '../../models/scout.model';
 import {Troop} from '../../models/troop.model';
-import {ChildService} from '../../services/child.service';
+import {ScoutService} from '../../services/scout.service';
 import {TroopService} from '../../services/troop.service';
 import bulmaCalendar from 'bulma-calendar/dist/js/bulma-calendar';
 
@@ -13,17 +13,17 @@ import bulmaCalendar from 'bulma-calendar/dist/js/bulma-calendar';
   styleUrls: ['./troop-page.component.scss']
 })
 export class TroopPageComponent implements OnInit, AfterViewInit, OnDestroy {
-  public children$: Observable<Child[]>;
+  public scouts$: Observable<Scout[]>;
   public troop$: Observable<Troop>;
   public calendar: bulmaCalendar;
+  public troopId: string = undefined;
 
   @ViewChild('dateInput', {static: false}) dateInput: ElementRef<HTMLInputElement>;
-  private troopId: string = undefined;
   private params$$: Subscription = Subscription.EMPTY;
 
   constructor(
     private route: ActivatedRoute,
-    private childService: ChildService,
+    private scoutService: ScoutService,
     private troopService: TroopService) {
   }
 
@@ -31,7 +31,7 @@ export class TroopPageComponent implements OnInit, AfterViewInit, OnDestroy {
     this.params$$ = this.route.params.subscribe(params => {
       this.troopId = params['troopId'];
       this.troop$ = this.troopService.getTroop$(this.troopId);
-      this.children$ = this.childService.getChildren$(this.troopId);
+      this.scouts$ = this.scoutService.getScouts$(this.troopId);
     });
   }
 
@@ -39,8 +39,8 @@ export class TroopPageComponent implements OnInit, AfterViewInit, OnDestroy {
     this.params$$.unsubscribe();
   }
 
-  createChild(child: { name: string }) {
-    this.childService.createChild(child, this.troopId);
+  createScout(scout: { name: string }) {
+    this.scoutService.createScout(scout, this.troopId);
   }
 
   ngAfterViewInit(): void {

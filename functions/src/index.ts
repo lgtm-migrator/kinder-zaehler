@@ -4,5 +4,5 @@ import * as functions from 'firebase-functions';
 admin.initializeApp(functions.config().firebase);
 
 export * from './troop-funcitons';
-export * from './child-functions';
+export * from './scout-functions';
 export * from './user-initialisation';

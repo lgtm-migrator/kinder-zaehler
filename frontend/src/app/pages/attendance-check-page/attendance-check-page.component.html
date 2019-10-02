@@ -1,10 +1,10 @@
 <ng-container *ngIf="status$ | async as status">
   {{ status.checked }}/ {{status.all}}
 </ng-container>
-<ng-container *ngIf="child$ | async as child; else loading">
-  {{ child.name }}
+<ng-container *ngIf="scout$ | async as scout; else loading">
+  {{ scout.name }}
 
-  <button (click)="isPresent(child)">isPresent</button>
+  <button (click)="isPresent(scout)">isPresent</button>
 
 </ng-container>
 <ng-template #loading>

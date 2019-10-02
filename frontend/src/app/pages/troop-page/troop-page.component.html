@@ -11,16 +11,16 @@
     </h1>
   </div>
 
-  <div class="column children-list">
-    <p *ngFor="let child of children$ | async">{{child.name}}</p>
+  <div class="column scouts-list">
+    <p *ngFor="let scout of scouts$ | async">{{scout.name}}</p>
   </div>
 
   <div class="column box actions">
-      <app-create-child-button (createChild)="createChild($event)"></app-create-child-button>
+      <app-create-scout-button (createScout)="createScout($event)"></app-create-scout-button>
       <app-attendance-check-button [troopId]="troopId"></app-attendance-check-button>
 
       <!--suppress HtmlFormInputWithoutLabel -->
-      <input #dateInput type="date" (createChild)="createChild($event)"/>
+      <input #dateInput type="date" (createScout)="createScout($event)"/>
   </div>
 </div>
 

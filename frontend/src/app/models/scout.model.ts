@@ -1,4 +1,4 @@
-export interface Child {
+export interface Scout {
   name: string;
   loaded: boolean;
 }

@@ -10,8 +10,8 @@ import {environment} from '../environments/environment';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
-import {CreateChildDialogComponent} from './components/create-child-dialog/create-child-dialog.component';
-import {CreateChildButtonComponent} from './components/create-child-button/create-child-button.component';
+import {CreateScoutDialogComponent} from './components/create-scout-dialog/create-scout-dialog.component';
+import {CreateScoutButtonComponent} from './components/create-scout-button/create-scout-button.component';
 import {CreateTroopFormComponent} from './components/create-troop-form/create-troop-form.component';
 import {GoogleSignInButtonComponent} from './components/google-sign-in-button/google-sign-in-button.component';
 import {JoinTroopFormComponent} from './components/join-troop-form/join-troop-form.component';
@@ -37,8 +37,8 @@ import { AttendanceCheckPageComponent } from './pages/attendance-check-page/atte
     CreateTroopFormComponent,
     TroopListComponent,
     TroopPageComponent,
-    CreateChildButtonComponent,
-    CreateChildDialogComponent,
+    CreateScoutButtonComponent,
+    CreateScoutDialogComponent,
     ModalComponent,
     AttendanceCheckButtonComponent,
     AttendanceCheckPageComponent
@@ -53,7 +53,7 @@ import { AttendanceCheckPageComponent } from './pages/attendance-check-page/atte
     AngularFirestoreModule,
     AngularFireFunctionsModule
   ],
-  entryComponents: [CreateChildDialogComponent],
+  entryComponents: [CreateScoutDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
