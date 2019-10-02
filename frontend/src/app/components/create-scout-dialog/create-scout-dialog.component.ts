@@ -17,7 +17,8 @@ export class CreateScoutDialogComponent {
   constructor() {
   }
 
-  public onSubmit() {
+  public onSubmit(event: Event) {
+    event.preventDefault();
     this.name = this.name.trim();
     if (this.name.length < 1) {
       this.scoutNameEmpty = true;

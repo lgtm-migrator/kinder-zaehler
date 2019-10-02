@@ -30,8 +30,7 @@ export class ScoutService {
   }
 
   public createScout(scout: { name: string }, troopId: string) {
-    console.log('create scout');
-    return this._createScout({name, troopId}).toPromise();
+    return this._createScout({name: scout.name, troopId}).toPromise();
   }
 
   public setAttendance(troopId: string, scout: LoadedScout, attendance: string) {
